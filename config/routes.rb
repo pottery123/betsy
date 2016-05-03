@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :users do
+  resources :users, :only => [:new, :create] do
     resources :products
     resources :orders
   end

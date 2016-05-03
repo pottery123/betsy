@@ -20,12 +20,29 @@ class ReviewsController < ApplicationController
       @reviewparams = review_params
       @review = Review.new(review_params)
       if  @review.save
-      
+
       # this should reload the detail view for the product, but to do that Rowan needs to write
       # a show_product_details method in the controller.
       redirect_to "/"
 
       end
+
+  def index
+    @review = Review.where(product_id: params[:product_id])
+  end
+
+  def show
+      @review = Sale.all.where(params[:product_id])
+
+  end
+
+  def new
+      @review = Review.all.where(params[:product_id])
+  end
+
+  def create
+
+
 
   end
 
@@ -33,10 +50,10 @@ class ReviewsController < ApplicationController
 
   def edit
 
+
     @review = Reviews.find(params[:id])
 
     render :new
-
   end
 
   def update

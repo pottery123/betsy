@@ -15,8 +15,11 @@ Rails.application.routes.draw do
   end
 
 
-  resources :orders do 
+  resources :orders do
     resources :orderitems
+
+  resources :orders do
+
     resources :users
   end
 
@@ -25,10 +28,19 @@ Rails.application.routes.draw do
     resources :orders
   end
 
+
   # resources :reviews do
   #   resources :users
   #   resources :products
   # end
+
+
+
+  resources :reviews do
+    resources :users
+    resources :products
+  end
+
 
 
 

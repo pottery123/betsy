@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
 
   def new
     @user = User.find(params[:id])
+    # user = curent user here.
     @product = Product.new
     render :create_product
   end
@@ -20,14 +21,30 @@ class ProductsController < ApplicationController
   def create 
     @product = Product.create(product_create_params[:product])
     redirect_to products_show_path(@product.vendor_id)
+    redirect_to products_show_path(@current_user.id)
   end
 
   def edit
+    @product = Product.find(params[:id])
+    render :edit
   end 
 
   def update
+    @product = Product.find(params[:id])
+    @product.update(product_update_params[:product])
+    redirect_to products_show_path(@current_user.id)
   end
 
-  def delete
+  def destroy
+   killed_record = Product.destroy(params[:id])
+   if params[:id] = true 
+     redirect_to products_show_path(@current_user.id)
+   end 
   end 
+
+  private
+
+  def product_create_params
+    params.permit(product: [:item, :user_id]) 
+  end
 end

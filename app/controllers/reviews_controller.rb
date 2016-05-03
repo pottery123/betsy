@@ -1,22 +1,28 @@
 class ReviewsController < ApplicationController
   def index
-  end 
-      
-  def show 
+    @review = Review.where(product_id: params[:product_id])
+  end
+
+  def show
+      @review = Sale.all.where(params[:product_id])
+
   end
 
   def new
+      @review = Review.all.where(params[:product_id])
   end
 
-  def create 
+  def create
+    
+
   end
 
   def edit
-  end 
+  end
 
   def update
   end
 
   def delete
-  end 
+  end
 end

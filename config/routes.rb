@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/' => 'products#index'
+
   resources :users, :only => [:new, :create] do
     resources :products
     resources :orders

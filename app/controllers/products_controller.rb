@@ -12,14 +12,22 @@ class ProductsController < ApplicationController
   end
 
   def new
+<<<<<<< HEAD
     # user = curent user here.
+=======
+    @user = User.find(params[:id])
+>>>>>>> 2da8e960313038c460c3632a189734ad84811431
     @product = Product.new
     render :create_product
   end
 
   def create 
     @product = Product.create(product_create_params[:product])
+<<<<<<< HEAD
     redirect_to products_show_path(@current_user.id)
+=======
+    redirect_to products_show_path(@product.vendor_id)
+>>>>>>> 2da8e960313038c460c3632a189734ad84811431
   end
 
   def edit

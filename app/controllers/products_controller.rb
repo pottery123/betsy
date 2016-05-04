@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
       
   def show
     # this needs to be amended to hook into the session 
+    # controller action: if @user_id (show "list" view for user)/if category (show "list" view by category)
     @user = User.find(params[:id])
     redirect_to index
   end

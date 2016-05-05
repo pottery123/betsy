@@ -1,19 +1,11 @@
 <h1 class="merchant"><%= @user.name %></h1>
 <h2 class="">Products</h2>
 
-<% products = Product.where(vendor_id: @user.id) %>
 
-<% products.each do |product| %>
+<% @products.each do |product| %>
 	<p class="product-detail-listing">
 		<strong>Product ID:</strong> <%= product.id %><br>
 		<%= link_to product.name, user_product_path(product.user_id, product.id) %><br>
 		<%= product.price %>
-		
-		<% if current_user.id == product.user_id %>
-
-			<% # this currently uses edit/update functionality and will direct to the edit page, where visibility can be changed. %>
-			<%= link_to "Remove from Display?", product_path(product.id) %>
-
-    <% end %>
 	</p>	
 <%end%>

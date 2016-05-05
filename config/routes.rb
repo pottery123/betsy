@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
   get '/' => 'products#index'
 
-  resources :users do
+  # get '/account' => 'users'
+
+  resources :sessions, :only => [:new, :create, :destroy]
+  delete '/logout' => 'sessions#destroy'
+
+  resources :users, :only => [:new, :create] do
     resources :products
     resources :orders
   end

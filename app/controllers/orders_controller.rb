@@ -13,17 +13,15 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
-  # def create 
-  #   # @product = Product.find(params[:product_id])
-  #   @product = Product.all 
-  #   @order = Order.new
-  #   if @order.save
-  #     # flash message?
-  #     redirect_to orders_path
-  #   else
-  #     render :new
-  #   end 
-  # end
+  def create 
+    @order = Order.new
+    if @order.save
+      # flash message?
+      redirect_to orders_path
+    else
+      render :new
+    end 
+  end
 
   def edit
     @order_edit = OrderItem.find(id: params[:id])

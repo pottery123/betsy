@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
   def current_user
     @user ||= User.find_by(id: session[:user_id])
   end
+
+  def index
+    redirect_to products_path
+  end
+
 end

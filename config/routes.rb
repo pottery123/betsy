@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
- root 'ditzy#index'
-
-  # get '/account' => 'users'
+  root 'ditzy#index'
 
   resources :sessions, :only => [:new, :create, :destroy]
   delete '/logout' => 'sessions#destroy'

@@ -20,20 +20,20 @@ CSV.foreach(PRODUCTS, headers: true) do |row|
   Product.create(row.to_h)
 end
 
-# PRODUCTS = './seed_csvs/products.csv'
+# ORDERS = './seed_csvs/orders.csv'
 
-# CSV.foreach(PRODUCTS, headers: true) do |row|
-#   Product.create(row.to_h)
+# CSV.foreach(ORDERS, headers: true) do |row|
+#   Order.create(row.to_h)
 # end
 
-# SALES = './seed_csvs/sales.csv'
+# USERS = './seed_csvs/users.csv'
 
-# CSV.foreach(SALES, headers: true) do |row|
-#   Sale.create(row.to_h)
+# CSV.foreach(USERS, headers: true) do |row|
+#   User.create(row.to_h)
 # end
 
-# VENDORS = './seed_csvs/vendors.csv'
+# ORDERITEMS = './seed_csvs/orderitems.csv'
 
-# CSV.foreach(VENDORS, headers: true) do |row|
-#   Vendor.create(row.to_h)
+# CSV.foreach(ORDERITEMS, headers: true) do |row|
+#   OrderItem.create(row.to_h)
 # end

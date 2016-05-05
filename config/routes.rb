@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get '/' => 'products#index'
 
+  # get '/account' => 'users'
   resources :users, :only => [:new, :create] do
     resources :products
     resources :orders

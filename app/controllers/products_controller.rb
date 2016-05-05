@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
     # this needs to be amended to hook into the session
     # controller action: if @user_id (show "list" view for user)/if category (show "list" view by category)
     @product = Product.find(params[:id])
+    @reviews = Review.where(params[:product_id])
     render :product_details
   end
 

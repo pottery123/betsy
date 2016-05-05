@@ -1,0 +1,15 @@
+<% if @order_edit.errors.any? %>
+  <ul>
+    <div class="error-messages">
+    <% @order_edit.errors.each do |column, message| %>
+      <li>
+        <%= column.capitalize %> <%= message %>
+      </li>
+    <% end %>
+    </div>
+  </ul>
+<% end %>
+
+<%= params %> </br> 
+
+<!-- Need a route for order / product / edit -->

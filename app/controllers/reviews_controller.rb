@@ -12,10 +12,7 @@ class ReviewsController < ApplicationController
 
   def new
       @review = Review.all.where(params[:product_id])
-      @review = Review.new
-      @review.product_id = 1
-      @product = Product.new
-      @product.id = 1
+      @product = Product.find(params[:product_id])
       render :new
   end
 
@@ -23,7 +20,11 @@ class ReviewsController < ApplicationController
       @reviewparams = review_params
       @review = Review.new(review_params)
       if  @review.save
+      
+      # this should reload the detail view for the product, but to do that Rowan needs to write
+      # a show_product_details method in the controller.
       redirect_to "/"
+
       end
 
   end

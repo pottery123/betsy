@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.log_in(params[:email], params[:password])
+    user = User.log_in(params[:session_data][:email], params[:session_data][:password])
     if user
       session[:user_id] = user.id
       redirect_to root_path

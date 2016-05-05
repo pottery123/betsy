@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  # def self.log_in(email, password)
-  #   somebody = find_by(email: email)
-  #   somebody && somebody.authenticate(password)
-  # end
+  def self.log_in(email, password)
+    somebody = find_by(email: email)
+    somebody && somebody.authenticate(password)
+  end
 end

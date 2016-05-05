@@ -27,9 +27,4 @@
   ALL PRODUCTS
 </h2>
 
-<% @products.each do |product| %>
-  <ul>
-    <%= product.name %>  
-    <%=link_to(image_tag("#{product.image_url}"), product_path(product.id))%>
-  </ul>
-<% end %> 
+  <%=link_to "All Products", products_path%>

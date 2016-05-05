@@ -1,16 +1,20 @@
 <section class="product-details">
-  <h1 class="product-name"><%= @product.name %></h1>
-
+  <h1 class="product-name">
+    <%= @product.name %>
+  </h1>
   <%=image_tag("#{@product.image_url}")%>
-
-  <p class="product-price">Price: <%= @product.price_in_dollars %></p>
-
-  <p class="in-stock">Quantity: <%= @product.quantity %></p>
+  <p class="product-price">
+    Price: <%= @product.price_in_dollars %>
+  </p>
+  <p class="in-stock">
+    Quantity: <%= @product.quantity %>
+  </p>
 </section>
 
 <section class="reviews">
   <h1 class="reviews-title">Reviews</h1>
   <p class="reviews-text">
+
 
     <% @reviews.each do |review| %>
       <p> <%= review.rating %><br>

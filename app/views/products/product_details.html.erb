@@ -1,5 +1,5 @@
 <section class="product-details">
-  <h1 class="product-name"><%= @task.name %></h1>
+  <h1 class="product-name"><%= @product.name %></h1>
 
   <%# this is where the image goes. %>
 
@@ -25,3 +25,10 @@
     # This needs an instance variable of all the reviews, which will then be iterated to print them as paragraphs.
 
     # Then a link helper that goes to reviews post to write a new review as long as @current_user doesn't own this product in the system.
+
+    <% if current_user.id != @product.user_id %>
+    
+      <h1>Review this product</h1>
+      <%=link_to "review product", new_product_review_path(@product.id)%> #hardcoded 1
+
+    <% end %>

@@ -1,23 +1,18 @@
 <h1>hello Im a review</h1>
 
 <h2>Add a comment:</h2>
-<%= form_for([@product,@review]) do |f| %>
+<%= form_for([@product, @review]) do |f| %>
   <p>
     <%= f.label :review_text %><br>
     <%= f.text_area :review_text %>
   </p>
 
-    <p>
-  
-    </p>
+  <p>
     <%=f.label :rating%>
     <%=f.select :rating, [1,2,3,4,5] %>
-    <%= f.hidden_field :product_id %><br>
+  
+    <%= f.hidden_field :product_id, :value => params[:product_id] %><br>
 
-
-
-
-  <p>
     <%= f.submit %>
   </p>
 <% end %>

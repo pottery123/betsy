@@ -38,8 +38,9 @@ ActiveRecord::Schema.define(version: 20160505173932) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.text     "categories"
-    t.integer  "quantity"
     t.boolean  "visible"
+    t.integer  "quantity"
+    t.text     "image_url"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -52,12 +53,11 @@ ActiveRecord::Schema.define(version: 20160505173932) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.text     "user_name",             null: false
-    t.text     "email",                 null: false
-    t.text     "password",              null: false
-    t.text     "password_confirmation", null: false
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.text     "user_name",       null: false
+    t.text     "email",           null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest", null: false
   end
 
 end

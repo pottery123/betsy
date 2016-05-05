@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  get '/' => 'products#index'
+  root 'ditzy#index'
 
-  resources :users do
+  resources :sessions, :only => [:new, :create, :destroy]
+  delete '/logout' => 'sessions#destroy'
+
+  resources :users, :only => [:new, :create] do
     resources :products
     resources :orders
   end

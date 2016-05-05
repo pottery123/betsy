@@ -8,8 +8,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<header>
+  <%=image_tag("ditzy_logo_final.png")%>
+</header>
+  <main>
+    <%= yield %>
+  </main>
 </body>
 </html>

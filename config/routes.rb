@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
  root 'ditzy#index'
 
  get '/users/:user_id/products' => 'users#show_by_merchant'

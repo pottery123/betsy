@@ -3,10 +3,10 @@ class ProductsController < ApplicationController
     # right now this generates a list of every product in the products table.
     @products = Product.order(id: :asc)
     render :index
-  end 
-      
+  end
+
   def show
-    # this needs to be amended to hook into the session 
+    # this needs to be amended to hook into the session
     # controller action: if @user_id (show "list" view for user)/if category (show "list" view by category)
     @user = User.find(params[:id])
     redirect_to index
@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
     render :create_product
   end
 
-  def create 
+  def create
     @product = Product.create(product_create_params[:product])
     redirect_to products_show_path(@current_user.id)
   end
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     render :edit
-  end 
+  end
 
   def update
     @product = Product.find(params[:id])
@@ -37,14 +37,14 @@ class ProductsController < ApplicationController
 
   def destroy
    killed_record = Product.destroy(params[:id])
-   if params[:id] = true 
+   if params[:id] = true
      redirect_to products_show_path(@current_user.id)
-   end 
-  end 
+   end
+  end
 
   private
 
   def product_create_params
-    params.permit(product: [:item, :user_id]) 
+    params.permit(product: [:item, :user_id])
   end
 end

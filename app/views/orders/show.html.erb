@@ -1,3 +1,4 @@
+<%= params %> </br> 
 <h1>
   YOUR CART OF AWESOME WAREZ
 </h1>
@@ -6,22 +7,21 @@
   <% @order_items.each do |item| %>
     Order ID: <%= item.order_id %> </br>
     Product ID: <%= item.product_id %> </br>
-    Quantity Requested: <%= item.quantity %> </br>
-    <%= button_to "edit", 
-      {:controller => :orders, :action => 'edit', :id => item.id }, 
-      :method => :get %>
-    <%= button_to "complete", 
-      {:controller => :orders, :action => 'create', :id => item.id }, 
-      :method => :post %>
+    Quantity Requested: <%= item.quantity %>
+    <%= button_to "edit item", order_path, :method => :patch %>
+    <%= button_to "delete item", order_path, :method => :patch %> </br>
    <% end %>
 </p>
 <p>
   <% @product.each do |product| %>
     Product name: <%= product.name.capitalize %> </br>
     Product ID: <%= product.id %> </br>
-    Quantity On Hand: <%= product.quantity %> </br>
+    Quantity On Hand: <%= product.quantity %> </br> </br>
    <% end %>
 </p>
 
+<!-- This link can totally be styled to look like a button -->
+<!-- Doesn't work, needs route re-tooled -->
+<%= link_to "complete order", orders_path, :action => "create", :method => :post %>
 
 

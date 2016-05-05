@@ -9,12 +9,9 @@ class OrdersController < ApplicationController
 
   end
 
-  # def new
-  #   # @product = Product.find(params[:product_id])
-  #   @product = Product.all 
-  #   @order = Order.new
-
-  # end
+  def new
+    @order = Order.new
+  end
 
   # def create 
   #   # @product = Product.find(params[:product_id])
@@ -28,19 +25,19 @@ class OrdersController < ApplicationController
   #   end 
   # end
 
-  # def edit
-  #   @order = Order.find(params[:id]) || Order.find(params[:order_id])
-  # end 
+  def edit
+    @order_edit = OrderItem.find(id: params[:id])
+  end 
 
-  # def update
-  #   @order = Order.find(params[:id]) 
-  #   # logic to check inventory 
-  #   # if quantity requested < quantity in stock, 
-  #   # message to the user "sorry we only have x of that item"
-  #   @order.update(update_params[:order])
-  #   # message about quantity updated 
-  #   redirect_to order_path
-  # end
+  def update
+    @order_update = OrderItem.find(id: params[:id]) 
+    # logic to check inventory 
+    # if quantity requested < quantity in stock, 
+    # flash message "sorry we only have x of that item"
+    @order.update(update_params[:orderitem])
+    # message about quantity updated 
+    redirect_to order_path
+  end
 
   # def destroy
   #   Order.destroy(params[:id])
@@ -49,5 +46,10 @@ class OrdersController < ApplicationController
   #     redirect_to order_path
   #   end
   # end 
+  private
 
+
+  def update_params
+    params.permit(orderitem: [:quantity])
+  end
 end

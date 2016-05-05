@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
   end
 
   def new
-      @review = Review.all.where(params[:product_id])
+      @review = Review.new
       @product = Product.find(params[:product_id])
       render :new
   end

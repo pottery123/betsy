@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160505173932) do
     t.text     "categories"
     t.integer  "quantity"
     t.boolean  "visible"
+    t.text     "image_url"
   end
 
   create_table "reviews", force: :cascade do |t|

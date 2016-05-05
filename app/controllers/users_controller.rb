@@ -26,6 +26,14 @@ class UsersController < ApplicationController
   #   end
   # end
 
+  def show_by_merchant
+    @merchant = User.find(params[:user_id])
+    @products = Product.where(user_id: @merchant.id)
+
+    render :list_view
+  end
+
+
   private
 
   def user_create_params

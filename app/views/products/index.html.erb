@@ -1,0 +1,9 @@
+
+<ul>
+	<% @products.each do |product| %>
+		<li class="product"><%= product.name %> - <%= product.price %>
+	<%end%>
+</ul>
+
+<h1>Review this product</h1>
+<%=link_to "review product" ,new_product_review_path(1)%> #hardcoded 1

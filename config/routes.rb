@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  resources :orders do
+
+  resources :orders do 
+    resources :orderitems
     resources :users
   end
 

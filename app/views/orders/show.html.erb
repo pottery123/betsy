@@ -8,7 +8,7 @@
     Order ID: <%= item.order_id %> </br>
     Product ID: <%= item.product_id %> </br>
     Quantity Requested: <%= item.quantity %>
-    <%= button_to "edit item", order_path, :method => :patch %>
+    <%= button_to "edit item", edit_order_path, :method => :patch %>
     <%= button_to "delete item", order_path, :method => :patch %> </br>
    <% end %>
 </p>

@@ -12,15 +12,14 @@ Rails.application.routes.draw do
   end
 
   resources :products do
-    resources :users
     resources :reviews
     resources :orders
   end
 
-  resources :reviews do
-    resources :users
-    resources :products
-  end
+  # resources :reviews do
+  #   resources :users
+  #   resources :products
+  # end
 
 
 

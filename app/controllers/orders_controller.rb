@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
  
   def show 
     # array them because they are relations. Can't .each a relation object 
-    @order_items = OrderItem.all.to_a
-    @product = Product.all .to_a
+    @order_items = OrderItem.all
+    @product = Product.all
     # @order_items = OrderItem.where(order: params[:user_id])
     # @product = Product.find(user_id: params[:user_id])
 

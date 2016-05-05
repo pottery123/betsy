@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
- root 'application#index'
+ root 'ditzy#index'
 
   # get '/account' => 'users'
 

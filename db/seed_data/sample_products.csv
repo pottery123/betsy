@@ -1,6 +1,6 @@
-name,price_in_dollars,user_id,categories
-Wedding Football,400,3,Wedding Garter DIY
-Lipstick Heart,25,1,Makeup DIY Valentine
-High Heel Rain Boots,80,8,Fashion Practical
-Hairspray Can Top,5,1,Makeup Practical Replacement
+name,price_in_dollars,user_id,categories, visible
+Wedding Football,400,3,Wedding Garter DIY,true
+Lipstick Heart,25,1,Makeup DIY Valentine,true
+High Heel Rain Boots,80,8,Fashion Practical,true
+Hairspray Can Top,5,1,Makeup Practical Replacement,true
 

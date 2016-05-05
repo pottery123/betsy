@@ -1,7 +1,7 @@
 <section class="product-details">
   <h1 class="product-name"><%= @product.name %></h1>
 
-  <%# this is where the image goes. %>
+  <%=image_tag("#{@product.image_url}")%>
 
   <p class="product-price">Price: <%= @product.price_in_dollars %></p>
 

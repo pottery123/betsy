@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :orders do
     resources :orderitems
+  end
 
   resources :orders do
 
@@ -28,15 +29,10 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-<<<<<<< 261b8b35f6a09dec189f0b3994520130baec0634
-
-=======
->>>>>>> finished reviews for guest users
   # resources :reviews do
   #   resources :users
   #   resources :products
   # end
-<<<<<<< 261b8b35f6a09dec189f0b3994520130baec0634
 
 
 
@@ -44,9 +40,8 @@ Rails.application.routes.draw do
     resources :users
     resources :products
   end
-=======
->>>>>>> finished reviews for guest users
 
+end
 
 
 
@@ -104,4 +99,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end

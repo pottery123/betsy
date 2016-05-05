@@ -1,0 +1,27 @@
+<h1>
+  YOUR CART OF AWESOME WAREZ
+</h1>
+<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+<p>
+  <% @order_items.each do |item| %>
+    Order ID: <%= item.order_id %> </br>
+    Product ID: <%= item.product_id %> </br>
+    Quantity Requested: <%= item.quantity %> </br>
+    <%= button_to "edit", 
+      {:controller => :orders, :action => 'edit', :id => item.id }, 
+      :method => :get %>
+    <%= button_to "complete", 
+      {:controller => :orders, :action => 'create', :id => item.id }, 
+      :method => :post %>
+   <% end %>
+</p>
+<p>
+  <% @product.each do |product| %>
+    Product name: <%= product.name.capitalize %> </br>
+    Product ID: <%= product.id %> </br>
+    Quantity On Hand: <%= product.quantity %> </br>
+   <% end %>
+</p>
+
+
+

@@ -1,0 +1,14 @@
+<% if @order.errors.any? %>
+  <ul>
+    <div class="error-messages">
+    <% @order.errors.each do |column, message| %>
+      <li>
+        <%= column.capitalize %> <%= message %>
+      </li>
+    <% end %>
+    </div>
+  </ul>
+<% end %>
+
+<%= params %> </br> 
+

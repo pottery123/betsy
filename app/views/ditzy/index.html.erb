@@ -30,5 +30,6 @@
 <% @products.each do |product| %>
   <ul>
     <%= product.name %>  
+    <%=link_to(image_tag("#{product.image_url}"), product_path(product.id))%>
   </ul>
 <% end %> 

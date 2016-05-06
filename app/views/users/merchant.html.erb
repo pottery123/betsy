@@ -12,5 +12,27 @@
 
 
 <h3>Create a Product, if you please.</h3>
+<%= form_for @product, :url => product_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :price %>
+  <%= f.text_field :price_in_dollars %>
+  <%= f.label :quantity %>
+  <%= f.text_field :quantity %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :image_url %>
+  <%= f.text_field :image_url %>
+
+  <%= f.hidden_field :user_id, :value => @merchant.id %>
+  <%= f.hidden_field :visible, :value => true %>
+
+  <%= f.submit %>
+  <% end %>
 
 
+
+
+<!--     t.integer  "user_id",                       null: false
+    t.text     "categories",       default: [],              array: true
+    t.boolean  "visible" -->

@@ -19,6 +19,15 @@
 </h2>
 <i class="fa fa-credit-card" aria-hidden="true"></i>
 <p>
+  <% if @billing.errors.any? %>
+  <ul>
+    <% @billing.errors.each do |column, message| %>
+      <li>
+        <%= column.capitalize %> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
   <%= form_for @billing do |f| %>
     <%= f.label :email %>
     <%= f.text_field :email %><br/>
@@ -26,12 +35,12 @@
     <%= f.text_field :address %><br/>
     <%= f.label :name_on_cc%>
     <%= f.text_field :name_on_cc %><br/>
-    <%= f.label :cc_number %>
-    <%= f.text_field :cc_number %><br/>
-    <%= f.label :cc_security %>
-    <%= f.text_field :cc_security %><br/>
-    <%= f.label :cc_expiration %>
-    <%= f.text_field :cc_expiration %><br/>
+    <%= f.label :number_on_cc %>
+    <%= f.text_field :number_on_cc %><br/>
+    <%= f.label :security_on_cc %>
+    <%= f.text_field :security_on_cc %><br/>
+    <%= f.label :expiration_on_cc %>
+    <%= f.text_field :expiration_on_cc %><br/>
     <%= f.label :zip %>
     <%= f.text_field :zip %><br/>
     <%= f.submit %>

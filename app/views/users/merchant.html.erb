@@ -3,6 +3,13 @@
 <h2>Welcome, <%=@merchant.user_name%>. Please use this dashboard to manage your store.<h2>
 
 <h3>Create a Product Catagory, if you please.</h3>
+<%= form_for @catagory do |f| %>
+  <%= f.label :new_catagory %>
+  <%= f.text_field :catagory %>
+
+  <%= f.submit %>
+  <% end %>
+
 
 <h3>Create a Product, if you please.</h3>
 

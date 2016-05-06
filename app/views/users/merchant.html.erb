@@ -11,7 +11,7 @@
 <% end %>
 
 <h3>Create a Product, if you please.</h3>
-<%= form_for @product, :url => product_path do |f| %>
+<%= form_for @product do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :price %>

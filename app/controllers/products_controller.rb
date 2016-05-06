@@ -58,8 +58,11 @@ class ProductsController < ApplicationController
   end
 
   private
-
   def product_create_params
-    params.permit(product: [:item, :user_id])
+    params.permit(product: [:name, :user_id, :price_in_dollars, :categories, :visible, :quantity, :image_url])
   end
+
+  # def product_create_params
+  #   params.permit(product: [:item, :user_id])
+  # end
 end

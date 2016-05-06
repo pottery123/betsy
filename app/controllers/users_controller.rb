@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     def show
     @merchant = User.find(params[:id])
     @products = Product.where(user_id: @merchant.id)
-    # @catagory = Catagory.new
+    @category = Category.new
 
     render "users/merchant"
     # render :users_products

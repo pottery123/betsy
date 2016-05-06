@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
 
 
- root 'ditzy#index'
+  root 'ditzy#index'
 
- get '/users/:user_id/products' => 'users#show_by_merchant', as: "user_products"
+  get '/users/:user_id/products' => 'products#show_by_merchant', as: "user_products"
   # get '/account' => 'users'
+
+  get  '/categories/:category_id/products' => 'products#show_by_category', as: "category_products"
 
   resources :sessions, :only => [:new, :create, :destroy]
   delete '/logout' => 'sessions#destroy'
 
   resources :billings
-  
+
   resources :users, :only => [:new, :create] do
     # resources :products (commented out to write what's needed by hand)
     resources :orders
@@ -36,17 +38,6 @@ Rails.application.routes.draw do
   #   resources :users
   #   resources :products
   # end
-<<<<<<< HEAD
-end
-=======
-
-
-
-  resources :reviews do
-    resources :users
-    resources :products
-  end
-
 end
 
 

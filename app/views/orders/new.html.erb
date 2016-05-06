@@ -1,6 +1,42 @@
 <%= params %> </br> 
+
 <h1>
   YOUR CART OF AWESOME WAREZ
 </h1>
+<h2>
+  Order Items
+</h2>
 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
 <p>
+  <% @order_items.each do |item| %>
+    Order ID: <%= item.order_id %> </br>
+    Product ID: <%= item.product_id %> </br>
+    Quantity Requested: <%= item.quantity %></br></br>
+   <% end %>
+</p>
+<h2>
+  Give us your dollars
+</h2>
+<i class="fa fa-credit-card" aria-hidden="true"></i>
+<%= form_for @billing do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %><br/>
+  <%= f.label :address %>
+  <%= f.text_field :address %><br/>
+  <%= f.label :name_on_cc%>
+  <%= f.text_field :name_on_cc %><br/>
+  <%= f.label :cc_number %>
+  <%= f.text_field :cc_number %><br/>
+  <%= f.label :cc_security %>
+  <%= f.text_field :cc_security %><br/>
+  <%= f.label :cc_expiration %>
+  <%= f.text_field :cc_expiration %><br/>
+  <%= f.label :zip %>
+  <%= f.text_field :zip %><br/>
+  <%= f.submit %>
+<% end %>
+<h2>
+  Still Browsing?
+</h2>
+<i class="fa fa-eye" aria-hidden="true"></i></br>
+<%= link_to "back to products", products_path %>

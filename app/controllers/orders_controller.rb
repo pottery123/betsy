@@ -12,12 +12,15 @@ class OrdersController < ApplicationController
     @order = Order.new
     @product_id = params[:format]
     @user_id = params[:user]
+    @order_items = OrderItem.where(product_id: @product_id)
+    @billing = "to payment gateway"
+
   end
 
   def create 
     @order = Order.new
     if @order.save
-      # flash message?
+      flash[:message] = "Order Complete!"
       redirect_to orders_path
     else
       render :new

@@ -3,8 +3,7 @@
 		<li class="product">
       <%= link_to product.name, product_path(product.id) %> - <%= product.price_in_dollars %></li>
       <p>
-        <!-- pass product id or user_id from here?  -->
-        <!-- format => user_id -->
+        <!-- before logic where if out of stock, flash message to prevent adding to cart -->
         <%=link_to "BUY NOW", new_order_path(product.id, :user => product.user_id)%>
       </p>
 	<%end%>

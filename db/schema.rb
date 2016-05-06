@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20160506175814) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.text     "categories",       default: [],              array: true
-    t.integer  "quantity"
     t.boolean  "visible"
+    t.integer  "quantity"
     t.text     "image_url"
   end
 

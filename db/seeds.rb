@@ -20,11 +20,11 @@ CSV.foreach(PRODUCTS, headers: true) do |row|
   Product.create(row.to_h)
 end
 
-# ORDERS = './seed_csvs/orders.csv'
+ORDERS = './seed_csvs/orders.csv'
 
-# CSV.foreach(ORDERS, headers: true) do |row|
-#   Order.create(row.to_h)
-# end
+CSV.foreach(ORDERS, headers: true) do |row|
+  Order.create(row.to_h)
+end
 
 # USERS = './seed_csvs/users.csv'
 

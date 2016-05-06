@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
 
- root 'ditzy#index'
+  root 'ditzy#index'
 
- get '/users/:user_id/products' => 'users#show_by_merchant', as: "user_products"
+  get '/users/:user_id/products' => 'products#show_by_merchant', as: "user_products"
   # get '/account' => 'users'
+
+  get  '/categories/:category_id/products' => 'products#show_by_category', as: "category_products"
 
   resources :sessions, :only => [:new, :create, :destroy]
   delete '/logout' => 'sessions#destroy'

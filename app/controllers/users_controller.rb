@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     @merchant = User.find(params[:id])
     @products = Product.where(user_id: @merchant.id)
     @category = Category.new
+    @categories = Category.all
     @product = Product.new
 
     render "users/merchant"

@@ -10,6 +10,13 @@
   <%= f.submit %>
 <% end %>
 
+<h2>All Categories</h2>
+<ul>
+<% @categories.each do |category| %>
+	<li><%= category.name %></li>
+
+	<% end %></ul>
+
 <h3>Create a Product, if you please.</h3>
 <%= form_for @product do |f| %>
   <%= f.label :name %>

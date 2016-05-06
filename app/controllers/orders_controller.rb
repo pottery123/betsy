@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
- 
-  def show 
+
+  def show
     @order_items = OrderItem.all
     @product = Product.all
     # @order_items = OrderItem.where(order: params[:user_id])
@@ -17,29 +17,29 @@ class OrdersController < ApplicationController
 
   end
 
-  def create 
+  def create
     @order = Order.new
-    @billing = Billing.new 
+    @billing = Billing.new
     if @order.save
       flash[:message] = "Order Complete!"
       @billing.save
       redirect_to orders_path
     else
       render :new
-    end 
+    end
   end
 
   def edit
-    @order_edit = OrderItem.find(id: params[:id])
-  end 
+    @order_edit = Order.find(session[:order_id])
+  end
 
   def update
-    @order_update = OrderItem.find(id: params[:id]) 
-    # logic to check inventory 
-    # if quantity requested < quantity in stock, 
+    @order_update = OrderItem.find(id: params[:id])
+    # logic to check inventory
+    # if quantity requested < quantity in stock,
     # flash message "sorry we only have x of that item"
     @order.update(update_params[:orderitem])
-    # message about quantity updated 
+    # message about quantity updated
     redirect_to order_path
   end
 
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
   #     # flash message
   #     redirect_to order_path
   #   end
-  # end 
+  # end
   private
 
 

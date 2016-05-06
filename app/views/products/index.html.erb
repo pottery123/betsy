@@ -1,16 +1,15 @@
-<<<<<<< 261b8b35f6a09dec189f0b3994520130baec0634
+
 <ul>
 	<% @products.each do |product| %>
 		<li class="product">
       <%= link_to product.name, product_path(product.id) %> - <%= product.price_in_dollars %></li>
       <p>
         <!-- before logic where if out of stock, flash message to prevent adding to cart -->
-        <%=link_to "BUY NOW", new_order_path(product.id, :user => product.user_id)%>
+        <%=link_to "BUY NOW", edit_order_path(product.id, :user => product.user_id)%>
       </p>
 	<%end%>
 </ul>
 
-=======
+
 <h1>Review this product</h1>
 <%=link_to "review product" ,new_product_review_path(1)%> #hardcoded 1
->>>>>>> finished reviews for guest users

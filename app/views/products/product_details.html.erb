@@ -12,7 +12,7 @@
   <p>
     <!-- pass product id or user_id from here?  -->
     <!-- format => user_id -->
-    <%=link_to "BUY NOW", new_order_path(@product.id, :user => @product.user_id)%>
+    <%=link_to "BUY NOW", edit_order_path(@product.id, :user => @product.user_id)%>
   </p>
 </section>
 
@@ -26,7 +26,7 @@
       <%end%>
 
     <% if !current_user || current_user.id != @product.user_id %>
-    
+
       <h1>Review this product</h1>
       <%=link_to "review product", new_product_review_path(@product.id)%>
 

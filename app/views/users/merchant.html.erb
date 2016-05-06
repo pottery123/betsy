@@ -2,10 +2,17 @@
 <h1>Merchant Dashboard </h1>
 <h2>Welcome, <%=@merchant.user_name%>. Please use this dashboard to manage your store.<h2>
 
+<<<<<<< HEAD
 <h3>Create a Category, if you please.</h3>
 <%= form_for @category, :url => categories_path do |f| %>
   <%= f.label :category_name %>
   <%= f.text_field :name %>
+=======
+<h3>Create a Product Category, if you please.</h3>
+<%= form_for @user, :url => users_path do |f| %>
+  <%= f.label :new_catagory %>
+  <%= f.text_field :category %>
+>>>>>>> origin
 
   <%= f.submit %>
   <% end %>

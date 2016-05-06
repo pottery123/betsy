@@ -1,7 +1,9 @@
 <ul>
 	<% @products.each do |product| %>
 		<li class="product">
-      <%= link_to product.name, product_path(product.id) %> - <%= product.price_in_dollars %></li>
+      <% @user = User.find(product.user_id) %>
+      <%= link_to product.name, product_path(product.id) %> - <%= product.price_in_dollars %><br>
+      Sold by: <%= link_to @user.user_name, user_products_path(product.user_id)%></li>
       <p>
         <!-- before logic where if out of stock, flash message to prevent adding to cart -->
         <%=link_to "BUY NOW", new_order_path(product.id, :user => product.user_id)%>

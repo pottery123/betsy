@@ -11,5 +11,18 @@ class CategoriesController < ApplicationController
     render :categories_products
   end
 
+  def create
+    @category = Category.new(category_create_params[:category])
+    if @category.save
+      redirect_to dashboard_path(current_user.id)
+    else
+      # this sucks - place holder for the moment
+      render dashboard_path
+    end
+  end
 
+  private
+  def category_create_params
+    params.permit(category: [:name])
+  end
 end

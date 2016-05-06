@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   delete '/logout' => 'sessions#destroy'
 
+  resources :billings
+  
   resources :users, :only => [:new, :create] do
     # resources :products (commented out to write what's needed by hand)
     resources :orders
@@ -24,12 +26,6 @@ Rails.application.routes.draw do
     resources :reviews
     resources :orders
   end
-
-  # resources :reviews do
-  #   resources :users
-  #   resources :products
-  # end
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

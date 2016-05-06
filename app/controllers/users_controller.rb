@@ -25,12 +25,21 @@ class UsersController < ApplicationController
   #       render "new"
   #   end
   # end
+    def show
+    @merchant = User.find(params[:id])
+    @products = Product.where(user_id: @merchant.id)
+    # @catagory = Catagory.new
+
+    render "users/merchant"
+    # render :users_products
+  end
 
   def show_by_merchant
     @merchant = User.find(params[:id])
     @products = Product.where(user_id: @merchant.id)
 
-    render "users/merchant"
+    # render "users/merchant"
+    render :users_products
   end
 
 

@@ -2,9 +2,12 @@ Rails.application.routes.draw do
 
 
  root 'ditzy#index'
+ get 'dashboard/:id' => 'users#show', :as => 'dashboard'
 
  get '/users/:user_id/products' => 'users#show_by_merchant', as: "user_products"
   # get '/account' => 'users'
+
+  resources :catagory
 
   resources :sessions, :only => [:new, :create, :destroy]
   delete '/logout' => 'sessions#destroy'
@@ -26,7 +29,6 @@ Rails.application.routes.draw do
     resources :reviews
     resources :orders
   end
-  get 'dashboard/:id' => 'users#show_by_merchant', :as => 'dashboard'
 
   # resources :reviews do
   #   resources :users

@@ -27,10 +27,10 @@ class UsersController < ApplicationController
   # end
 
   def show_by_merchant
-    @merchant = User.find(params[:user_id])
+    @merchant = User.find(params[:id])
     @products = Product.where(user_id: @merchant.id)
 
-    render :list_view
+    render "users/merchant"
   end
 
 

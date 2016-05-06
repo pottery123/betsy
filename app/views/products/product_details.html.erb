@@ -1,11 +1,19 @@
 <section class="product-details">
-  <h1 class="product-name"><%= @product.name %></h1>
-
-  <%# this is where the image goes. %>
-
-  <p class="product-price">Price: <%= @product.price_in_dollars %></p>
-
-  <p class="in-stock">Quantity: <%= @product.quantity %></p>
+  <h1 class="product-name">
+    <%= @product.name %>
+  </h1>
+  <%=image_tag("#{@product.image_url}")%>
+  <p class="product-price">
+    Price: <%= @product.price_in_dollars %>
+  </p>
+  <p class="in-stock">
+    Quantity: <%= @product.quantity %>
+  </p>
+  <p>
+    <!-- pass product id or user_id from here?  -->
+    <!-- format => user_id -->
+    <%=link_to "BUY NOW", new_order_path(@product.id, :user => @product.user_id)%>
+  </p>
 </section>
 
 <section class="reviews">

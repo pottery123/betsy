@@ -32,15 +32,10 @@ class UsersController < ApplicationController
 
     render "users/merchant"
     # render :users_products
+
+    # render :users_products
   end
 
-  def show_by_merchant
-    @merchant = User.find(params[:id])
-    @products = Product.where(user_id: @merchant.id)
-
-    # render "users/merchant"
-    render :users_products
-  end
 
 
   private

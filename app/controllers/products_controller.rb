@@ -13,6 +13,20 @@ class ProductsController < ApplicationController
     render :product_details
   end
 
+  def show_by_merchant
+    @merchant = User.find(params[:id])
+    @products = Product.where(user_id: @merchant.id)
+
+    render :users_products
+  end
+
+  def show_by_category
+    @merchant = User.find(params[:id])
+    @products = Product.where(user_id: @merchant.id)
+
+    render :categories_products
+  end
+
   def new
     # user = curent user here.
     @user = User.find(params[:id])

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
 
+
  root 'ditzy#index'
  get 'dashboard/:id' => 'users#show', :as => 'dashboard'
+
 
   get '/users/:user_id/products' => 'products#show_by_merchant', as: "user_products"
   # get '/account' => 'users'

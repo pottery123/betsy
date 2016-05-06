@@ -14,15 +14,15 @@ class ProductsController < ApplicationController
   end
 
   def show_by_merchant
-    @merchant = User.find(params[:id])
+    @merchant = User.find(params[:user_id])
     @products = Product.where(user_id: @merchant.id)
 
     render :users_products
   end
 
   def show_by_category
-    @merchant = User.find(params[:id])
-    @products = Product.where(user_id: @merchant.id)
+    @category = Category.find(params[:category_id])
+    @products = Product.includes(categories: @category.name)
 
     render :categories_products
   end

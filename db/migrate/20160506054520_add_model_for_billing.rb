@@ -10,5 +10,6 @@ class AddModelForBilling < ActiveRecord::Migration
       t.integer  :zip, null: false
 
       t.timestamps null: false
+    end
   end
 end

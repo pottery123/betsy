@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20160506224928) do
     t.datetime "updated_at",       null: false
     t.integer  "quantity"
     t.boolean  "visible"
-    t.text     "image_url"
+    t.string   "image_url"
     t.text     "description"
   end
 

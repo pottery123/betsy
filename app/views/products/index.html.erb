@@ -8,8 +8,7 @@
       <%= link_to product.name, product_path(product.id) %> - <%= product.price_in_dollars %><br>
       Sold by: <%#= link_to @user.user_name, user_products_path(product.user_id)%></li>
       <p>
-        <!-- before logic where if out of stock, flash message to prevent adding to cart -->
-        <%=link_to "BUY NOW", new_order_path(product.id)%>
+        <%=link_to "BUY NOW", cart_path(product.id), method: :post %>
       </p>
 	<%end%>
 </ul>

@@ -3,25 +3,34 @@
   YOUR CART OF AWESOME WAREZ
 </h1>
 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-<p>
-  <% @order_items.each do |item| %>
-    Order ID: <%= item.order_id %> </br>
-    Product ID: <%= item.product_id %> </br>
-    Quantity Requested: <%= item.quantity %>
-    <%= button_to "edit item", edit_order_path, :method => :patch %>
-    <%= button_to "delete item", order_path, :method => :patch %> </br>
-   <% end %>
-</p>
-<p>
-  <% @product.each do |product| %>
-    Product name: <%= product.name.capitalize %> </br>
-    Product ID: <%= product.id %> </br>
-    Quantity On Hand: <%= product.quantity %> </br> </br>
-   <% end %>
-</p>
+  <ul>
+    <% total = 0 %>
+    <% @order_items.each do |item| %>
+      <% product = Product.find(item.product_id) %>
+      <li>
+        <%= product.name %>
+        <ul>
+          <li>Price: <%= product.price_in_dollars %></li>
+          <li>Quantity: <%= item.quantity %>
+            <% if product.quantity > 1 %>
+              <%= form_for(item, url: update_cart_path(item.id), method: :patch) do |f| %>
+                <%= f.label "Change Quantity" %>
+                <%= f.select(:quantity, options_for_select((1..product.quantity)), include_blank: true) %>
+                <%= f.submit "Update" %>
+              <% end %>
+            <% else %>
+              (Only 1 left in stock!)
+            <% end %>
+          </li>
+          <li><%= link_to "Remove This Item", {:controller => :order_item, :action => 'destroy', :id => item.id}, method: :delete %></li>
+        </ul>
+      </li>
+      <% total += (product.price_in_dollars * item.quantity) %>
+    <% end %>
+  </ul>
 
-<!-- This link can totally be styled to look like a button -->
-<!-- Doesn't work, needs route re-tooled -->
-<%= link_to "complete order", orders_path, :action => "create", :method => :post %>
+  <p>Total: <%= total %></p>
 
+<p>Proceed to Checkout</p>
 
+<%= link_to "Back To Shop", products_path %>

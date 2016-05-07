@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  # this creates an session order ID for guests 
-  root 'sessions#create_order'
+  
+  # Creates an empty cart and an order id for guests from session id
+    root 'sessions#create_order'
 
-  # get '/cart' => 'order_item#index', :as => 'cart'
-  # post '/cart' => 'order_item#index' 
+  resources :products do
+    resources :reviews
+  end
+
+  get '/cart' => 'order_item#index', as: 'cart'
+  post '/cart' => 'order_item#create'
+  delete '/cart' => 'order_item#destroy'
+  patch '/cart/:id' => 'order_item#update', as: 'update_cart'
 
   get '/users/:user_id/products' => 'products#show_by_merchant', as: "user_products"
   # get '/account' => 'users'
@@ -20,14 +27,15 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  resources :orders do 
-    resources :users
-  end
-
   resources :products do
     resources :reviews
     resources :orders
   end
+
+  resources :orders do 
+    resources :users
+  end
+
   get 'dashboard/:id' => 'users#show_by_merchant', :as => 'dashboard'
 
   # resources :reviews do

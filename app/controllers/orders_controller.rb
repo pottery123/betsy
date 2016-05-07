@@ -1,59 +1,64 @@
 class OrdersController < ApplicationController
- 
-  def show 
-    @order_items = OrderItem.all
-    @product = Product.all
-    # @order_items = OrderItem.where(order: params[:user_id])
-    # @product = Product.find(user_id: params[:user_id])
+   # confirmation page
+ def show
+   @order = Order.find(session[:order_id])
+ end
 
-  end
+ def purchase
+ # show the form for "this" order
+   @order = Order.find(session[:order_id])
+ end
 
-  def new
-    @order = Order.new
-    @billing = Billing.new
-    @product_id = params[:format]
-    @user_id = params[:user]
-    @order_items = OrderItem.where(product_id: @product_id)
+ def new
+   @order = Order.new
+ end
 
-  end
+ def complete_purchase
+   order = Order.find(session[:order_id])
+   order.completed_time = Time.now
+   order.completion_status = "paid"
+   reduce_inventory(order)
+   if order.save
+   redirect_to root_path
+   else
+     render :new
+   end
+ end
 
-  def create 
-    @order = Order.new
-    @billing = Billing.new 
-    if @order.save
-      flash[:message] = "Order Complete!"
-      @billing.save
-      redirect_to orders_path
-    else
-      render :new
-    end 
-  end
+ def reduce_inventory(order)
+ # check that there is enough inventory here
+ # add check for inventory and return error if no inventory
+   items = order.order_items
+   items.each do |item|
+   product = item.product
+   quantity = item.quantity
+   # if product.stock is not greater then zero, deal with error
+     if product.stock < 0
+       flash[:error] = "Out of Stock"
+       redirect_to product_path(params[:product_id])
+     else
+       product.stock = product.stock - quantity
+     end
+   end
+ end
 
-  def edit
-    @order_edit = OrderItem.find(id: params[:id])
-  end 
+ def find_order
+   @order = Order.find(session[:order_id])
+ end
 
-  def update
-    @order_update = OrderItem.find(id: params[:id]) 
-    # logic to check inventory 
-    # if quantity requested < quantity in stock, 
-    # flash message "sorry we only have x of that item"
-    @order.update(update_params[:orderitem])
-    # message about quantity updated 
-    redirect_to order_path
-  end
+ def create
+     @order = Order.new(order_params[session[:order_id])
+     if @order.save
+       redirect_to products_path
+     else
+       render :new
+     end
+ end
 
-  # def destroy
-  #   Order.destroy(params[:id])
-  #   if params[:id] = true
-  #     # flash message
-  #     redirect_to order_path
-  #   end
-  # end 
-  private
+ private
 
+ def order_param
+   params.permit(order: [:card_name, :email, :address, :credit_card, :exp_date, :cvv, :zip])
+ end
 
-  def update_params
-    params.permit(orderitem: [:quantity])
-  end
-end
+end  

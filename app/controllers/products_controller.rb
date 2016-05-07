@@ -22,7 +22,9 @@ class ProductsController < ApplicationController
 
   def show_by_category
     @category = Category.find(params[:category_id])
-    @products = Product.includes(categories: @category.name)
+    @products = Category.includes(:products).find(params[:category_id]).products
+
+
 
     render :categories_products
   end

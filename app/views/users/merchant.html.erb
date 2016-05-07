@@ -29,10 +29,13 @@
   <%= f.text_field :description %>
   <%= f.label :image_url %>
   <%= f.text_field :image_url %>
-  <%= f.label :categories %>
-  <%= f.text_field :categories %>
 
-  <%= f.hidden_field :user_id, :value => @merchant.id %>
+  <% @categories.each do |category| %>
+   	<%= f.label :categories, "#{category.name}", :value => category.name %>
+  	<%= f.radio_button :categories, true, :checked => :categories %>
+	<% end %>
+
+	<%= f.hidden_field :user_id, :value => @merchant.id %>
   <%= f.hidden_field :visible, :value => true %>
 
   <%= f.submit %>

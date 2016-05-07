@@ -10,10 +10,9 @@
     Quantity: <%= @product.quantity %>
   </p>
   <p>
-    <!-- pass product id or user_id from here?  -->
-    <!-- format => user_id -->
-    <%=link_to "BUY NOW", new_order_path(@product.id, :user => @product.user_id)%>
-  </p>
+
+   <%=link_to "BUY NOW", cart_path(@product.id)%>
+
 </section>
 
 <section class="reviews">

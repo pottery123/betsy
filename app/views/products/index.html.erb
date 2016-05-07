@@ -1,12 +1,14 @@
 <ul>
+  <h1>butts</h1>
+  <%= params %>
+  <%= @products = Product.order(id: :asc).to_a %>
 	<% @products.each do |product| %>
 		<li class="product">
-      <% @user = User.find(product.user_id) %>
+      <%# @user = User.find(product.user_id) %>
       <%= link_to product.name, product_path(product.id) %> - <%= product.price_in_dollars %><br>
-      Sold by: <%= link_to @user.user_name, user_products_path(product.user_id)%></li>
+      Sold by: <%#= link_to @user.user_name, user_products_path(product.user_id)%></li>
       <p>
-        <!-- before logic where if out of stock, flash message to prevent adding to cart -->
-        <%=link_to "BUY NOW", new_order_path(product.id, :user => product.user_id)%>
+        <%=link_to "BUY NOW", cart_path(product.id), method: :post %>
       </p>
 	<%end%>
 </ul>

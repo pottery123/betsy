@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    # right now this generates a list of every product in the products table.
+    @new_products = Product.last(3)
     @products = Product.order(id: :asc)
     render :index
   end

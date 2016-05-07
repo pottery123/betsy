@@ -1,4 +1,11 @@
 class SessionsController < ApplicationController
+  
+  #instantiates the cart before anything else (logging in) happens
+  def new
+    @order = Order.create 
+    session[:order_id] = @order.id
+    redirect_to products_path
+  end
 
   # login for registered users 
   def create
@@ -16,7 +23,8 @@ class SessionsController < ApplicationController
     # brand new cart object
     @order = Order.create
     # this is the cart object
-    current_user, session[:order_id] = @order.id
+    session[:order_id] = @order.id
+    raise 
     redirect_to products_path
   end 
 

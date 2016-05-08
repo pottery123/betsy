@@ -45,6 +45,8 @@
 <h3>Your Products!</h3>
 <ul>
 <% @products.each do |product| %>
-	<li><%= product.name %></li>
-
+	<li>
+		<%= product.name %>
+		<%= button_to "Edit", edit_product_path, :method => :get, params: {product_id: product.id} %>
+	</li>
 	<% end %></ul>

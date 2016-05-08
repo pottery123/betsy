@@ -48,5 +48,10 @@
 	<li>
 		<%= product.name %>
 		<%= button_to "Edit", edit_product_path, :method => :get, params: {product_id: product.id} %>
+    <% if product.visible == true %>
+      <%= "Visible to buyers" %>
+    <% else %>
+      <%= "Not visible to buyers" %>
+    <% end %>
 	</li>
 	<% end %></ul>

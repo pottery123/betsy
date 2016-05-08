@@ -1,4 +1,5 @@
 <pre><%= params %></pre>
+<%= current_user.id %>
 <h1>Merchant Dashboard </h1>
 <h2>Welcome, <%=@merchant.user_name%>. Please use this dashboard to manage your store.<h2>
 
@@ -40,3 +41,10 @@
 
   <%= f.submit %>
 <% end %>
+
+<h3>Your Products!</h3>
+<ul>
+<% @products.each do |product| %>
+	<li><%= product.name %></li>
+
+	<% end %></ul>

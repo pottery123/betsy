@@ -11,7 +11,7 @@
   <%= f.submit %>
 <% end %>
 
-<h2>All Categories</h2>
+<h3>All Categories</h3>
 <ul>
 <% @categories.each do |category| %>
 	<li><%= category.name %></li>
@@ -43,15 +43,16 @@
 <% end %>
 
 <h3>Your Products!</h3>
-<ul>
+<table>
 <% @products.each do |product| %>
-	<li>
-		<%= product.name %>
-		<%= button_to "Edit", edit_product_path, :method => :get, params: {product_id: product.id} %>
+	<tr>
+		<td><%= product.name %></td>
     <% if product.visible == true %>
-      <%= "Visible to buyers" %>
+      <td><%= "Visible to buyers" %></td>
     <% else %>
-      <%= "Not visible to buyers" %>
+      <td><%= "Not visible to buyers" %></td>
     <% end %>
-	</li>
-	<% end %></ul>
+    <td><%= button_to "Edit", edit_product_path, :method => :get, params: {product_id: product.id} %></td>
+	</tr>
+	<% end %>
+</table>

@@ -16,8 +16,11 @@
   		<%= f.text_field :quantity %>
   	</td>
    	<td>
-			<%= f.label :visible %>
-  		<%= f.text_field :visible %>
+  		<%= f.label :visibility %>
+      <%= f.label :true %>
+      <%= f.radio_button :visible, :true, :checked => :true %>
+      <%= f.label :false %>
+      <%= f.radio_button :visible, :false, :checked => :false %>
   	</td>
    	<td>
 			<%= f.label :image_url %>

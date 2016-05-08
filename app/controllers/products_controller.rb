@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     @product.update(product_update_params[:product])
-    redirect_to products_show_path(@current_user.id)
+    redirect_to dashboard_path(current_user.id)
   end
 
   def destroy
@@ -59,10 +59,10 @@ class ProductsController < ApplicationController
 
   private
   def product_create_params
-    params.permit(product: [:name, :user_id, :price_in_dollars, :visible, :quantity, :image_url, :category_ids => []])
+    params.permit(product: [:name, :user_id, :price_in_dollars, :visible, :quantity, :description, :image_url, :category_ids => []])
   end
 
-  # def product_create_params
-  #   params.permit(product: [:item, :user_id])
-  # end
+  def product_update_params
+    params.permit(product: [:name, :user_id, :price_in_dollars, :visible, :quantity, :description, :image_url, :category_ids => []])
+  end
 end

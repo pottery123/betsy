@@ -35,8 +35,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @cats = product_create_params[:product][:categories]
-    raise
     @product = Product.create(product_create_params[:product])
     redirect_to products_show_path(@current_user.id)
   end
@@ -61,7 +59,7 @@ class ProductsController < ApplicationController
 
   private
   def product_create_params
-    params.permit(product: [:name, :user_id, :price_in_dollars, :categories, :visible, :quantity, :image_url])
+    params.permit(product: [:name, :user_id, :price_in_dollars, :visible, :quantity, :image_url, :category_ids => []])
   end
 
   # def product_create_params

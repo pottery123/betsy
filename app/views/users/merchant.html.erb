@@ -31,8 +31,8 @@
   <%= f.text_field :image_url %>
 
   <% @categories.each do |category| %>
-   	<%= f.label :categories, "#{category.name}", :value => category.name %>
-  	<%= f.check_box :categories, category.name  %>
+   	<%= f.label :category_ids, "#{category.name}", :value => category.name %>
+  	<%= f.check_box :category_ids, {:multiple => true}, category.id, nil  %>
 	<% end %>
 
 	<%= f.hidden_field :user_id, :value => @merchant.id %>

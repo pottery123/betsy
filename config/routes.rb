@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # Creates an empty cart and an order id for guests from session id
     root 'sessions#create_order'
 
@@ -20,8 +20,10 @@ Rails.application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   delete '/logout' => 'sessions#destroy'
 
-  resources :billings
-  
+  resources :billings do
+    resources :orders
+  end
+
   resources :users, :only => [:new, :create] do
     # resources :products (commented out to write what's needed by hand)
     resources :orders
@@ -32,7 +34,7 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  resources :orders do 
+  resources :orders do
     resources :users
   end
 
@@ -43,5 +45,6 @@ Rails.application.routes.draw do
   #   resources :products
   # end
 
-end 
-    
+
+
+end

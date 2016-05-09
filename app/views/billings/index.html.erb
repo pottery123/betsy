@@ -1,0 +1,12 @@
+<%=form_for :billings, :url => {action: 'create' } do |form| %>
+Email: <%= form.text_field :email%><br>
+Adress: <%=form.text_field :addresss%><br>
+Name on Credit Card  <%=form.text_field :number_on_cc%><br>
+Number on Credit Card: <%=form.text_field :security_on_cc%><br>
+Security on Credit Card:<%=form.text_field :expiration_on_cc%><br>
+Zip: <%=form.text_field :zip%>
+<%form.datetime_field :created_at%>
+<%form.datetime_field :updated_at%>
+<%= submit_tag 'Submit' %><br>
+<% end %>
+<%=params%>

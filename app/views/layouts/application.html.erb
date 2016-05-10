@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-  <%=image_tag("ditzy_logo_final.png")%>
+  <%=link_to image_tag("ditzy_logo_final.png"), products_path%>
 <% if current_user != nil %> 
   <%= current_user.email %>
   <%= link_to "Logout", logout_path, method: "delete" %>

@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   def index
     @new_products = Product.last(3)
     @products = Product.order(id: :asc)
+    @categories = Category.all
     render :index
   end
 
@@ -21,8 +22,8 @@ class ProductsController < ApplicationController
   end
 
   def show_by_category
-    @category = Category.find(params[:category_id])
-    @products = Category.includes(:products).find(params[:category_id]).products
+    # @category = Category.find(params[:category_id])
+    @products = Category.find(params[:category_id]).products
 
 
 

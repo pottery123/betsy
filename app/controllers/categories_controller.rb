@@ -34,10 +34,10 @@ class CategoriesController < ApplicationController
 
   private
   def category_create_params
-        if category_create_params[:category][:name] == ""
-      flash.now[:error] = "Please Enter a Catagory Name"
-      raise
-    end
+    #     if category_create_params[:category][:name] == ""
+    #   flash.now[:error] = "Please Enter a Catagory Name"
+    #   raise
+    # end
     params.permit(category: [:name])
   end
 end

@@ -10,8 +10,11 @@
     Quantity: <%= @product.quantity %>
   </p>
   <p>
+    Description: <%= @product.description %>
+  </p>
 
    <%=link_to "BUY NOW", cart_path(@product.id), method: :post %>
+
 
 </section>
 

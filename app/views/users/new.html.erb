@@ -1,16 +1,16 @@
 <h1>Sign up for DITzy!</h1>
-<% if @user.errors.any? %>
+<% if @new_user.errors.any? %>
   <div class="errors">
     <h2> Bwoken. :( </h2>
     <ul>
-      <% @user.errors.each do |attribute, message| %>
+      <% @new_user.errors.each do |attribute, message| %>
         <li><strong><%= attribute %></strong>: <%= message %></li>
       <% end %>
     </ul>
   </div>  
 <% end %>
 
-<%= form_for @user, :url => users_path do |f| %>
+<%= form_for @new_user, :url => users_path do |f| %>
   <%= f.label :user_name %>
   <%= f.text_field :user_name %>
 

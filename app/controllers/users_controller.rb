@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   def new
-    @user = User.new
+    @new_user = User.new
   end
 
   def create
-    @user = User.new(user_create_params[:user])
+    @new_user = User.new(user_create_params[:user])
 
-    if @user.save
+    if @new_user.save
       redirect_to new_session_path
     else
       render :new
@@ -26,17 +26,18 @@ class UsersController < ApplicationController
   #   end
   # end
     def show
-    @merchant = User.find(params[:id])
-    @products = Product.where(user_id: @merchant.id)
-    @category = Category.new
-    @categories = Category.all
-    @product = Product.new
+      if current_user && current_user.id == params[:id].to_i
+        @merchant = User.find(params[:id])
+        @products = Product.where(user_id: @merchant.id)
+        @category = Category.new
+        @categories = Category.all
+        @product = Product.new
 
-    render "users/merchant"
-    # render :users_products
-
-    # render :users_products
-  end
+        render "users/merchant"
+      else
+        redirect_to root_path
+      end
+    end
 
 
 

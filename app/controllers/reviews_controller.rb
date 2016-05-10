@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
       
       # this should reload the detail view for the product, but to do that Rowan needs to write
       # a show_product_details method in the controller.
-      redirect_to "/"
+      redirect_to product_path(@review.product_id)
 
       end
 

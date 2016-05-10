@@ -1,18 +1,22 @@
 <h1>hello Im a review</h1>
 
-<h2>Add a comment:</h2>
-<%= form_for([@product, @review]) do |f| %>
-  <p>
-    <%= f.label :review_text %><br>
-    <%= f.text_area :review_text %>
-  </p>
+<% if !current_user || current_user.id != @product.user_id %>
+  <h2>Add a comment:</h2>
+  <%= form_for([@product, @review]) do |f| %>
+    <p>
+      <%= f.label :review_text %><br>
+      <%= f.text_area :review_text %>
+    </p>
 
-  <p>
-    <%=f.label :rating%>
-    <%=f.select :rating, [1,2,3,4,5] %>
-  
-    <%= f.hidden_field :product_id, :value => params[:product_id] %><br>
+    <p>
+      <%=f.label :rating%>
+      <%=f.select :rating, [1,2,3,4,5] %>
+    
+      <%= f.hidden_field :product_id, :value => params[:product_id] %><br>
 
-    <%= f.submit %>
-  </p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+<% else %>
+  <h2>This is your product! You can't leave a review.</h2>
 <% end %>

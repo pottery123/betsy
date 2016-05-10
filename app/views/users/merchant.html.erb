@@ -1,4 +1,4 @@
-<pre><%= params %></pre>
+<!-- <pre><%= params %></pre> -->
 <%= current_user.id %>
 <h1>Merchant Dashboard </h1>
 <h2>Welcome, <%=@merchant.user_name%>. Please use this dashboard to manage your store.<h2>
@@ -46,7 +46,7 @@
 <table>
 <% @products.each do |product| %>
 	<tr>
-		<td><%= product.name %></td>
+		<td><%= link_to product.name, product_path(product.id) %></td>
     <% if product.visible == true %>
       <td><%= "Visible to buyers" %></td>
     <% else %>

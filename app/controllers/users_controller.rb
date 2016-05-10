@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_create_params[:user])
 
     if @user.save
-      redirect_to products_path
+      redirect_to new_session_path
     else
       render :new
     end

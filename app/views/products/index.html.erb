@@ -1,4 +1,3 @@
-<%= params %> 
 <h2>
   NEW PRODUCTS
 </h2>
@@ -6,9 +5,8 @@
 <ul>
   <% @new_products.each do |product| %>
     <li>
-     <%= product.name %>  
-    </li>
-    <li>
+     <%= product.name %><br>
+
       <%=link_to(image_tag("#{product.image_url}"), product_path(product.id))%>
     </li>
   <% end %> 
@@ -22,9 +20,10 @@
 
 <ul>
 	<% @products.each do |product| %>
+    <% user = User.find(product.user_id) %>
 		<li class="product">
       <%= link_to product.name, product_path(product.id) %> - <%= product.price_in_dollars %><br>
-      Sold by: <%#= link_to product.user_name, user_products_path(product.user_id)%></li>
+      Sold by: <%= link_to user.user_name, user_products_path(user.id)%></li>
       <p>
         <%=link_to "BUY NOW", cart_path(product.id), method: :post %>
       </p>

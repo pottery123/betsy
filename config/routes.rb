@@ -6,13 +6,14 @@ Rails.application.routes.draw do
   resources :products do
     resources :reviews
   end
-
   get '/cart' => 'order_item#index', as: 'cart'
   post '/cart' => 'order_item#create'
   delete '/cart' => 'order_item#destroy'
   patch '/cart/:id' => 'order_item#update', as: 'update_cart'
 
- get 'dashboard/:id' => 'users#show', :as => 'dashboard'
+  get '/complete' => 'orders#complete_order', as: 'complete_order' 
+
+ # get 'dashboard/:id' => 'users#show', :as => 'dashboard'
 
   get '/users/:user_id/products' => 'products#show_by_merchant', as: "user_products"
   # get '/account' => 'users'
@@ -42,7 +43,7 @@ Rails.application.routes.draw do
   end
 
 
-  get 'dashboard/:id' => 'users#show_by_merchant', :as => 'dashboard'
+  # get 'dashboard/:id' => 'users#show_by_merchant', :as => 'dashboard'
 
   resources :products do
     resources :reviews

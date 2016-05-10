@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   #   end
   # end
     def show
-      if current_user == true && current_user.id == params[:id]
+      if current_user && current_user.id == params[:id].to_i
         @merchant = User.find(params[:id])
         @products = Product.where(user_id: @merchant.id)
         @category = Category.new

@@ -10,8 +10,19 @@ class CategoriesController < ApplicationController
 
     render :categories_products
   end
-
+  #   if merchant && merchant.authenticate(params[:password])
+  #       merchant_session[:merchant_id] = merchant.id
+  #       redirect_to root_url, :notice => "Merchanthas been logged in"
+  #   else
+  #       flash.now[:error] = "Invalid username or password."
+  #       @title  = "Merchant Signin"
+  #       render "new"
+  #   end
   def create
+    # if category_create_params[:category][:name] == ""
+    #   flash.now[:error] = "Please Enter a Catagory Name"
+    #   raise
+    # end
     @category = Category.new(category_create_params[:category])
     if @category.save
       redirect_to dashboard_path(current_user.id)
@@ -23,6 +34,10 @@ class CategoriesController < ApplicationController
 
   private
   def category_create_params
+        if category_create_params[:category][:name] == ""
+      flash.now[:error] = "Please Enter a Catagory Name"
+      raise
+    end
     params.permit(category: [:name])
   end
 end

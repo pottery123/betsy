@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
  get '/checkout' => 'orders#new', as: 'checkout'
+ post '/checkout' => 'orders#complete_order'
 
   get '/cart' => 'order_item#index', as: 'cart'
   post '/cart' => 'order_item#create'

@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   def new
-    @user = User.new
+    @new_user = User.new
   end
 
   def create
-    @user = User.new(user_create_params[:user])
+    @new_user = User.new(user_create_params[:user])
 
-    if @user.save
+    if @new_user.save
       redirect_to new_session_path
     else
       render :new

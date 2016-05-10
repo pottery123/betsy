@@ -18,7 +18,7 @@
 <% if current_user %> 
   <%= current_user.email %>
   <%= link_to "Logout", logout_path, method: "delete" %>
-  <%#= link_to "Dashboard", dashboard_path(current_user.id), method: "get" %> 
+  <%= link_to "Dashboard", dashboard_path(current_user.id), method: "get" %> 
 <% else %> 
   <%= link_to "Login", new_session_path %> 
   <%= link_to "Create An Account", new_user_path %> 

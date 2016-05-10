@@ -26,17 +26,18 @@ class UsersController < ApplicationController
   #   end
   # end
     def show
-    @merchant = User.find(params[:id])
-    @products = Product.where(user_id: @merchant.id)
-    @category = Category.new
-    @categories = Category.all
-    @product = Product.new
+      if current_user == true && current_user.id == params[:id]
+        @merchant = User.find(params[:id])
+        @products = Product.where(user_id: @merchant.id)
+        @category = Category.new
+        @categories = Category.all
+        @product = Product.new
 
-    render "users/merchant"
-    # render :users_products
-
-    # render :users_products
-  end
+        render "users/merchant"
+      else
+        redirect_to root_path
+      end
+    end
 
 
 

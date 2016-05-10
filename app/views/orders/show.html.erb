@@ -1,1 +1,13 @@
 <!-- Confirmation Page -->
+
+<h1> Order Complete! </h1>
+<!-- Your order will be shipped in three business days  -->
+<%= params %> 
+<%= @order_details %> 
+<!-- loop through order details and show -->
+<% @order_details.each do |item| %>
+  <% product = Product.find(item.product_id) %>
+  <%= product.name %>
+  Price: $<%= product.price_in_dollars %>
+  Quantity: <%= item.quantity %>
+<% end %> 

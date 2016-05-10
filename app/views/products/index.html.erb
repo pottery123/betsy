@@ -5,9 +5,8 @@
 <ul>
   <% @new_products.each do |product| %>
     <li>
-     <%= product.name %>  
-    </li>
-    <li>
+     <%= product.name %><br>
+
       <%=link_to(image_tag("#{product.image_url}"), product_path(product.id))%>
     </li>
   <% end %> 

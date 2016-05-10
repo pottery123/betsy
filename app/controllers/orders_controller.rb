@@ -12,9 +12,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params[session[:order_id])
+    @order = Order.new(order_params[session[:order_id]])
     if @order.save
-      # call complete_order here 
+      # call complete_order here
       # Send to the confirmation page aka orders#show
     else
       render :new
@@ -22,11 +22,11 @@ class OrdersController < ApplicationController
   end
 
   def complete_order
-    # locate the order 
+    # locate the order
     order = Order.find(session[:order_id])
 
     # we need to add a status column to orders
-    
+
     # order.updated_at = Time.now
     # order.status = "complete"
 
@@ -51,4 +51,4 @@ class OrdersController < ApplicationController
       end
     end
   end
-end  
+end

@@ -44,6 +44,8 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:product_id])
+    # @categories = Product.find(params[:product_id]).categories
+    @categories = Category.all
     render :edit
   end
 

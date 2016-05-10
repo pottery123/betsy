@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   delete '/cart' => 'order_item#destroy'
   patch '/cart/:id' => 'order_item#update', as: 'update_cart'
 
- root 'ditzy#index'
  get 'dashboard/:id' => 'users#show', :as => 'dashboard'
 
   get '/users/:user_id/products' => 'products#show_by_merchant', as: "user_products"

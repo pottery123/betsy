@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   end
 
   def show_by_category
-    # @category = Category.find(params[:category_id])
+    @category = Category.find(params[:category_id])
     @products = Category.find(params[:category_id]).products
 
 

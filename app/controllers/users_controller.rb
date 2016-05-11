@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, except: [:new, :create, :bad_route]
+  before_action :require_login, except: [:new, :create, :bad_routei]
 
   def new
     @new_user = User.new

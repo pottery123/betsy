@@ -3,6 +3,8 @@
 <h1>Merchant Dashboard </h1>
 <h2>Welcome, <%=@merchant.user_name%>. Please use this dashboard to manage your store.<h2>
 
+
+
 <% if @category.errors.any? %>
   <ul class="errors">
     <% @category.errors.each do |column, message| %>

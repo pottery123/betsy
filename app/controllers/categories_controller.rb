@@ -32,7 +32,9 @@ class CategoriesController < ApplicationController
       redirect_to dashboard_path(current_user.id)
     else
       # this sucks - place holder for the moment
-      redirect_to dashboard_path(current_user.id)
+      render :bad_route
+
+      # redirect_to dashboard_path(current_user.id) 
     end
   end
 

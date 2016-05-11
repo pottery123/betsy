@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :products do
     resources :reviews
   end
-
  get '/checkout' => 'orders#new', as: 'checkout'
+ post '/checkout' => 'orders#create'
  post '/checkout' => 'orders#complete_order'
 
   get '/cart' => 'order_item#index', as: 'cart'

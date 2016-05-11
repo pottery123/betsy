@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     check_inventory(@order)
     if @order.save
       reduce_inventory(@order)
-      render :text => "yeah!"
+      redirect_to complete_order_path
     else
       render :new
     end
@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
     redirect_to :show
   end
 
-  def clear_cart
-    OrderItem.destroy(@order_details)
-  end
+  # def clear_cart
+  #   @order_details.destroy
+  # end
 end

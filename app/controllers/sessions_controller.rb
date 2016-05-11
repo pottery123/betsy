@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
     current_user = User.log_in(params[:session_data][:email], params[:session_data][:password])
     if current_user
       session[:user_id] = current_user.id
-      @order = Order.create 
+      @order = Order.create
+      @order.status = "pending" 
       session[:order_id] = @order.id
       redirect_to products_path
     else

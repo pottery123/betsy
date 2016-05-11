@@ -14,7 +14,7 @@
 
 </br></br>
 
-<h2>
+<h2 class="text-center">
   ALL PRODUCTS
 </h2>
 
@@ -34,7 +34,9 @@
 
 
 <aside>
-  <h3>All Categories</h3>
+<h2 class="text-center">
+  All Categories
+</h2>
 <ul>
 <% @categories.each do |category| %>
   <li><%= link_to category.name, category_products_path(category.id) %></li>

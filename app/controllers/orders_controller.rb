@@ -10,8 +10,8 @@ class OrdersController < ApplicationController
     # end
   end
 
-  def reduce_inventory(order)
-    @items = OrderItem.find(order).quantity
+  def reduce_inventory
+    @items = OrderItem.where(session[:order_id]).quantity
     @product = Product.find(order).name
     @items.each do |item|
       quantity = item.quantity

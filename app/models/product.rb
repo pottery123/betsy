@@ -3,4 +3,8 @@ class Product < ActiveRecord::Base
   has_many   :reviews
   has_and_belongs_to_many :categories
 
+  validates :name, presence: true
+  validates_numericality_of :quantity, :only_integer => true, :greater_than_or_equal_to => 0
+  validates_numericality_of :price_in_dollars, :greater_than_or_equal_to => 0
+
 end

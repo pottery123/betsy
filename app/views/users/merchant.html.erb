@@ -3,6 +3,16 @@
 <h1>Merchant Dashboard </h1>
 <h2>Welcome, <%=@merchant.user_name%>. Please use this dashboard to manage your store.<h2>
 
+<% if @category.errors.any? %>
+  <ul class="errors">
+    <% @category.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 
 <h3>Create a Category, if you please.</h3>
 <%= form_for @category, :url => categories_path do |f| %>

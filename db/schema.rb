@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20160511050101) do
     t.integer  "user_id",          null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.boolean  "visible"
     t.integer  "quantity"
+    t.boolean  "visible"
     t.text     "image_url"
     t.text     "description"
   end

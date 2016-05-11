@@ -18,6 +18,10 @@ class CategoriesController < ApplicationController
   #       @title  = "Merchant Signin"
   #       render "new"
   #   end
+  def new
+    @category = Category.new
+  end
+
   def create
     # if category_create_params[:category][:name] == ""
     #   flash.now[:error] = "Please Enter a Catagory Name"
@@ -28,7 +32,7 @@ class CategoriesController < ApplicationController
       redirect_to dashboard_path(current_user.id)
     else
       # this sucks - place holder for the moment
-      render dashboard_path
+      redirect_to dashboard_path(current_user.id)
     end
   end
 

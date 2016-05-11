@@ -1,6 +1,4 @@
 class OrdersController < ApplicationController
-  # This should be the confirmation page for orders
-  # after order is complete
 
   def create
     @order = Order.find(session[:order_id])
@@ -12,9 +10,7 @@ class OrdersController < ApplicationController
     @order.email = params[:orders][:email]
     @order.zip = params[:orders][:zip]
     @order.updated_at = Time.now
-    #   # order.status = "complete"
-    #
-    # call complete_order here
+
     # Send to the confirmation page aka orders#show
     check_inventory(@order)
     if @order.save
@@ -24,8 +20,6 @@ class OrdersController < ApplicationController
       render :new
     end
   end
-
-
 
   def check_inventory(order)
 
@@ -37,19 +31,12 @@ class OrdersController < ApplicationController
     end
   end
 
-
-
-
   def reduce_inventory(order)
     order.order_items.each do |item|
       item.product.quantity -= item.quantity
       item.product.save
     end
   end
-
-
-
-
 
   def complete_order
     # locate the order and "complete it"

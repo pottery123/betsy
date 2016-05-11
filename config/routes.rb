@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/complete' => 'orders#complete_order', as: 'complete_order'
 
   get 'dashboard/:id' => 'users#show', :as => 'dashboard'
+  get 'dashboard/orders/:id' => 'users#show_merchant', :as => 'orders_dashboard'
   # get 'dashboard/:id' => 'users#show_by_merchant', :as => 'dashboard'
 
   # get '/users/:user_id/products' => 'products#show_by_merchant', as: "user_products"

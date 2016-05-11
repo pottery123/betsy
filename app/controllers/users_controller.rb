@@ -27,6 +27,10 @@ class UsersController < ApplicationController
   #       render "new"
   #   end
   # end
+
+  def show_merchant
+  end
+  
     def show
       @merchant = User.find(params[:id])
       @products = Product.where(user_id: @merchant.id)

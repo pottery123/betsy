@@ -1,1 +1,19 @@
 <h1>Manage Your Orders</h1>
+
+<table>
+<% @merchant_order_items.each do |order| %>
+  <tr>
+    <td><%= link_to order.id, order_path(order.id) %></td>
+    <td>
+      <%= f.label :not_shipped %>
+      <%= f.label :true %>
+      <%= f.radio_button :shipped, :true, :checked => :true %>
+      <%= f.label :false %>
+      <%= f.radio_button :visible, :false, :checked => :false %>
+    </td>
+    <td>
+      <%= f.submit %>
+    </td>
+  </tr>
+  <% end %>
+</table>

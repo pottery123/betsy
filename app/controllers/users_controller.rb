@@ -29,8 +29,22 @@ class UsersController < ApplicationController
   # end
 
   def show_merchant
+    merchant_products = Product.where(user_id: params[:id])
+    product_id_array = []
+    merchant_products.each do |product|
+      product_id_array << product.id
+    end
+    orderitems = OrderItem.all
+    # need an empty active record relation? 
+    @merchant_order_items = []
+
+    orderitems.each do |item|
+      if product_id_array.include? item.product_id
+        @merchant_order_items << item
+      end
+    end
   end
-  
+
     def show
       @merchant = User.find(params[:id])
       @products = Product.where(user_id: @merchant.id)

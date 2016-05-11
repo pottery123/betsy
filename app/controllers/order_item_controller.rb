@@ -20,6 +20,7 @@ class OrderItemController < ApplicationController
   def update
     @order_item = OrderItem.find(params[:id])
     @order_item.update(quantity: params[:order_item][:quantity])
+    @order_item.update(status: "pending")
 
     redirect_to cart_path
   end

@@ -10,14 +10,15 @@ class OrdersController < ApplicationController
     # end
   end
 
-  def reduce_inventory(order)
-    @items = OrderItem.find(order).quantity
-    @product = Product.find(order).name
+  def reduce_inventory
+    #untested code, will test when order#create is complete 
+    @items = OrderItem.where(session[:order_id])
+    @products = Product.where(session[:order_id]))
     @items.each do |item|
       quantity = item.quantity
       if @product.quantity < 0
         flash[:error] = "Sorry, this is out of stock!"
-        redirect_to product_path(params[:product_id])
+        redirect_to checkout_path
       else
         @product.quantity -= quantity
       end

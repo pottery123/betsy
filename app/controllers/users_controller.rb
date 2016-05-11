@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login
+
   def new
     @new_user = User.new
   end
@@ -26,22 +28,24 @@ class UsersController < ApplicationController
   #   end
   # end
     def show
-      if current_user && current_user.id == params[:id].to_i
-        @merchant = User.find(params[:id])
-        @products = Product.where(user_id: @merchant.id)
-        @category ||= Category.new
-        @categories = Category.all
-        @product = Product.new
+      @merchant = User.find(params[:id])
+      @products = Product.where(user_id: @merchant.id)
+      @category ||= Category.new
+      @categories = Category.all
+      @product = Product.new
 
-        render "users/merchant"
-      else
-        redirect_to root_path
-      end
+      render "users/merchant"
     end
 
 
 
   private
+
+  def require_login
+    unless current_user && current_user.id == params[:id].to_i
+      render :bad_route
+    end
+  end
 
   def user_create_params
     params.permit(user: [:user_name, :email, :password, :password_confirmation])

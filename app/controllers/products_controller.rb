@@ -1,31 +1,29 @@
 class ProductsController < ApplicationController
   def index
-    @new_products = Product.last(3)
-    @products = Product.order(id: :asc)
+    @new_products = Product.where(visible: true).last(3)
+    @products = Product.where(visible: true).order(id: :asc)
+    @categories = Category.all
     render :index
   end
 
   def show
     # this needs to be amended to hook into the session
     # controller action: if @user_id (show "list" view for user)/if category (show "list" view by category)
-    @product = Product.find(params[:id])
+    @product = Product.where(visible: true).find(params[:id])
     @reviews = Review.where(product_id: @product.id)
     render :product_details
   end
 
   def show_by_merchant
     @merchant = User.find(params[:user_id])
-    @products = Product.where(user_id: @merchant.id)
+    @products = Product.where(visible: true).where(user_id: @merchant.id)
 
     render :users_products
   end
 
   def show_by_category
     @category = Category.find(params[:category_id])
-    @products = Category.includes(:products).find(params[:category_id]).products
-
-
-
+    @products = Category.find(params[:category_id]).products.where(visible: true)
     render :categories_products
   end
 
@@ -43,6 +41,8 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:product_id])
+    # @categories = Product.find(params[:product_id]).categories
+    @categories = Category.all
     render :edit
   end
 

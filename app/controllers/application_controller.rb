@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
     redirect_to products_path
   end
 
+  # def logged_in?
+  #   current_user != nil
+  # end
+
 end

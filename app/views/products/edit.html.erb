@@ -30,6 +30,12 @@
 			<%= f.label :description %>
   		<%= f.text_field :description %>
   	</td>
+    <td>
+      <% @categories.each do |category| %>
+        <%= f.label :category_ids, "#{category.name}", :value => category.name %>
+        <%= f.check_box :category_ids, {:multiple => true}, category.id, nil  %>
+      <% end %>
+    </td>
     	<td>
     		<%= f.submit %>
     	</td>

@@ -25,24 +25,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def complete_order
-  #   # locate the order
-  #   @order = Order.find(session[:order_id])
-  #   @order = Order.update
-  #   render :show
-  #
-  #   # we need to add a status column to orders
-  #
-  #   # order.updated_at = Time.now
-  #   # order.status = "complete"
-  #
-  #   # reduce_inventory(order)
-  #   # if order.save
-  #   #   redirect_to confirmation_page_path
-  #   # else
-  #   #   render :new
-  #   # end
-  # end
+
 
   def check_inventory(order)
 
@@ -54,6 +37,9 @@ class OrdersController < ApplicationController
     end
   end
 
+
+
+
   def reduce_inventory(order)
     order.order_items.each do |item|
       item.product.quantity -= item.quantity
@@ -64,4 +50,17 @@ class OrdersController < ApplicationController
 
 
 
+
+  def complete_order
+    # locate the order and "complete it"
+    @order_details = OrderItem.where(session[:order_id])
+    clear_cart
+
+    #this is the confirmation page
+    redirect_to :show
+  end
+
+  def clear_cart
+    OrderItem.destroy(@order_details)
+  end
 end

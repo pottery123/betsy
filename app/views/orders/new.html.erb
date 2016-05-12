@@ -1,15 +1,22 @@
-<!-- Page with billing on it -->
-<h1>hello</h1>
+<h2>
+  <i class="fa fa-credit-card" aria-hidden="true"></i>
+  Billing Information
+</h2>
 
 <%= form_for :orders do |f| %>
-
-Name on credit card:<%= f.text_field :name_on_cc %><br />
-Address:<%= f.text_field :address %><br />
-Zip:<%= f.text_field :zip %><br />
-Security number on credit card:<%= f.text_field :security_on_cc %><br />
-Expiration on credit card:<%= f.text_field :expiration_on_cc %><br />
-Email:<%= f.text_field :email %><br />
-<% status = "pending" %>
-Status:<%= f.hidden_field :status => status %><br />
-Submit <%=f.submit%>
+  <div class="form-group">
+    <p>
+      Name on credit card: <%= f.text_field :name_on_cc %> <br />
+      Address: <%= f.text_field :address %><br />
+      Zip: <%= f.text_field :zip %><br />
+      Security Code: <%= f.text_field :security_on_cc %><br />
+      Expiration: <%= f.text_field :expiration_on_cc %><br />
+      Email: <%= f.text_field :email %><br />
+      <% status = "pending" %>
+      <% f.hidden_field :status => status %><br />
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-md", action: "create") do %>
+          Submit
+      <% end %>
+    </p>
+  </div>
 <%end%>

@@ -86,14 +86,15 @@ hr.bright-blue {
 /** FONT AWESOME **/
 
 .fa {
-  color: #42bad3; /* ditzy bright blue */
+  color: #3f52b8; /* ditzy dark blue */
+  font-size: 3rem !important;
 }
-// .fa-shopping-cart {
-//   font-size: 3rem; 
-// }
-// .fa-credit-card {
-//   font-size: 3rem; 
-// }
-// .fa-money {
-//   font-size: 3rem; 
-// }
+.fa-shopping-cart {
+
+}
+.fa-credit-card {
+  color: #3f52b8; /* ditzy dark blue */
+}
+.fa-money {
+  color: green; 
+}

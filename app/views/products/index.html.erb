@@ -2,36 +2,45 @@
   NEW PRODUCTS
 </h2>
 
-<ul>
-  <% @new_products.each do |product| %>
-    <li>
-     <%= product.name %><br>
-
-      <%=link_to image_tag("#{product.image_url}"), product_path(product.id)%>
-    </li>
-  <% end %> 
-</ul>
+<div class='center'>
+  <div class='row'>
+    <% @new_products.each do |product| %>
+      <div class="col-xs-6 col-xs-offset-2">
+        <div class="icon">
+          <div class="thumbnail" > 
+           <%= link_to product.name, product_path(product.id) %>
+           <%=link_to image_tag("#{product.image_url}"), product_path(product.id)%>
+          </div>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+</div>
 
 </br></br>
 
 <h2 class="text-center">
   ALL PRODUCTS
 </h2>
-
-<ul>
-	<% @products.each do |product| %>
-    <%# user = User.find(product.user_id) %>
-		<li class="product">
-      <%= image_tag product.image_url %>
-      <%= link_to product.name, product_path(product.id) %> - <%= product.price_in_dollars %><br>
-      Sold by: <%#= link_to user.user_name, user_products_path(user.id)%></li>
-      <p>
-        <%=link_to "BUY NOW", cart_path(product.id), method: :post %>
-      </p>
-	<%end%>
-</ul>
-
-
+<div class='center'>
+  <div class='row'>
+    <% @products.each do |product| %>
+      <div class="col-xs-6 col-xs-offset-2">
+        <div class="icon">
+          <div class="thumbnail" > 
+            <%# user = User.find(product.user_id) %>
+            <%= image_tag product.image_url %>
+            <%= link_to product.name, product_path(product.id) %> - $<%= product.price_in_dollars %><br>
+            Sold by: <%#= link_to user.user_name, user_products_path(user.id)%>
+            <p>
+              <%=link_to "BUY NOW", cart_path(product.id), method: :post %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
 
 <aside>
 <h2 class="text-center">

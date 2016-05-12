@@ -1,22 +1,13 @@
 <!-- Confirmation Page -->
-
-<h1>checkout</h1>
-
-
-<%= params %> </br>
-<%= @order_details %> </br>
-
 <h1> Order Complete! </h1>
 
-<% @order_details.each do |item| %>
-  <% product = Product.find(item.product_id) %>
-  <%= link_to product.name, product_path(product.id) %>
-  Price: $<%= product.price_in_dollars %>
-  Quantity: <%= item.quantity %>
-  Total: <%= number_to_currency(item.total) %>
-  Placed on: <%= item.updated_at.strftime("%B %d, %Y") %>
-  Status: <%= item.status %>
-<% end %>
+Item Ordered: <%= link_to @product.name, product_path(@product.id) %> </br>
+Quantity Ordered: <%= @order_items.quantity %> </br>
+Total Charged: <%= number_to_currency(@order.total) %></br>
+Placed on: <%= @order.updated_at.strftime("%B %d, %Y") %> </br>
+Status: <%= @order.status %> </br> 
+Shipped: 
+
 
 <!--
   done : each item in the order with a quantity and line item subtitle

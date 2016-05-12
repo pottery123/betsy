@@ -33,15 +33,15 @@
  h1 {
   color: #42bad3; /* ditzy bright blue */
   font-weight: lighter; 
-  font-size: 3rem; 
+  font-size: 2.5rem; 
   padding: 0rem 1rem 0rem 0.5rem; 
   margin: 0rem;
  }
  
  h2 {
     color: #d8563d; /* ditzy red */
-    font-size: 1.8rem;
-    padding: 1rem; 
+    font-size: 1.5rem;
+    padding: .8rem; 
  }
 
  a {
@@ -49,13 +49,13 @@
  }
  
  hr.dark-blue {
-  border: 2px solid #3f52b8; 
+  border: 0.1rem solid #3f52b8; 
   padding: 0px;
   margin: 0px;   
  }
 
 hr.bright-blue {
-  border: 2px solid #42bad3;
+  border: 0.1rem solid #42bad3;
   padding: 0px;
   margin: 0px;  
  }

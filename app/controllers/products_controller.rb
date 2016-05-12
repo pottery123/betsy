@@ -59,6 +59,10 @@ class ProductsController < ApplicationController
    end
   end 
 
+  def show_merchant_store
+    @merchant = User.find(params[:id])
+  end
+
   private
   def product_create_params
     params.permit(product: [:name, :user_id, :price_in_dollars, :visible, :quantity, :description, :image_url, :category_ids => []])

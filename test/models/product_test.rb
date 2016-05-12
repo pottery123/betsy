@@ -5,9 +5,10 @@ class ProductTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-  # test "products must have names" do
-    
-  #   assert_not :nameless.valid?
-  # end
+  test "products must have names" do
+    product = Product.new
+
+    assert_not product.valid?
+  end
 
 end

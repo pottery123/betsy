@@ -35,7 +35,6 @@ class UsersController < ApplicationController
     @pending_orders = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "pending").count()
     @completed_orders_subtotal = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "complete").sum("products.price_in_dollars")
     @pending_orders_subtotal = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "pending").sum("products.price_in_dollars")
-    # raise
 
     # merchant_products = Product.where(user_id: params[:id])
     # product_id_array = []
@@ -69,6 +68,10 @@ class UsersController < ApplicationController
       redirect_to orders_dashboard_path(current_user.id)
     end
 
+
+  def show_merchant_order
+    @order = Order.find(params[:id])
+  end
 
   private
 

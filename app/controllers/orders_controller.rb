@@ -63,4 +63,6 @@ class OrdersController < ApplicationController
   def clear_cart
     OrderItem.destroy(@order_details)
   end
+
+
 end

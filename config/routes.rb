@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'dashboard/orders/:id' => 'users#show_merchant', :as => 'orders_dashboard'
   get 'dashboard/order_item/:id' => 'order_item#show', :as => 'order_item'
   patch 'dashboard/order_item/:id' => 'users#update_order_item'
+  get 'dashboard/order/:id' => 'users#show_merchant_order', :as => 'merchant_order'
   # get 'dashboard/:id' => 'users#show_by_merchant', :as => 'dashboard'
 
   # get '/users/:user_id/products' => 'products#show_by_merchant', as: "user_products"

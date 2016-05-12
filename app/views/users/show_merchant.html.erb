@@ -23,7 +23,7 @@
   			<%= data.order_item_id %>
   		</td>
     	<td>
-    		<%= data.order_id %>
+    		<%= link_to data.order_id, merchant_order_path(data.order_id) %>
     	</td>
     	<td>
     		<%= data.created_at %>

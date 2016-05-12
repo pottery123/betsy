@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :require_login, except: [:new, :create, :bad_route]
+ before_action :require_login, except: [:new, :create, :bad_route]
 
   def new
     @new_user = User.new
@@ -15,19 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # def create
-  #   merchant = Merchant.find_by_userName(params[:userName])
-
-  #   if merchant && merchant.authenticate(params[:password])
-  #       merchant_session[:merchant_id] = merchant.id
-  #       redirect_to root_url, :notice => "Merchanthas been logged in"
-  #   else
-  #       flash.now[:error] = "Invalid username or password."
-  #       @title  = "Merchant Signin"
-  #       render "new"
-  #   end
-  # end
-
   def show_merchant
     @merchant_order_items = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).order(order_id: :asc)
     @total_revenue = OrderItem.joins(:product).where("products.user_id": params[:id]).sum("products.price_in_dollars")
@@ -35,21 +22,6 @@ class UsersController < ApplicationController
     @pending_orders = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "pending").count()
     @completed_orders_subtotal = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "complete").sum("products.price_in_dollars")
     @pending_orders_subtotal = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "pending").sum("products.price_in_dollars")
-
-    # merchant_products = Product.where(user_id: params[:id])
-    # product_id_array = []
-    # merchant_products.each do |product|
-    #   product_id_array << product.id
-    # end
-    # orderitems = OrderItem.all
-    # # need an empty active record relation? 
-    # @merchant_order_items = []
-
-    # orderitems.each do |item|
-    #   if product_id_array.include? item.product_id
-    #     @merchant_order_items << item
-    #   end
-    # end
   end
 
     def show

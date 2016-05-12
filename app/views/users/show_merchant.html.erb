@@ -17,19 +17,19 @@
   <tr>
   	<% if data.shipped == false %>
   	  <td>
-  			<%= link_to data.name, order_item_path(data.order_item_id) %>
+  			<%= link_to data.product.name, order_item_path(data.order.id) %>
   		</td>
   		<td>
-  			<%= data.order_item_id %>
+  			<%= data.id %>
   		</td>
     	<td>
-    		<%= link_to data.order_id, merchant_order_path(data.order_id) %>
+    		<%= link_to data.order.id, merchant_order_path(data.order.id) %>
     	</td>
     	<td>
-    		<%= data.created_at %>
+    		<%= data.order.created_at %>
     	</td>
     	<td>
-    		<%= data.status %>
+    		<%= data.order.status %>
     	</td>
     	<td>
     		<%= form_for data do |f| %>
@@ -60,25 +60,25 @@
   <tr>
   	<% if data.shipped == true %>
     	<td>
-  			<%= link_to data.name, order_item_path(data.id) %>
+  			<%= link_to data.product.name, order_item_path(data.id) %>
   		</td>
   		<td>
-  			<%= data.order_id %>
+  			<%= data.order.id %>
   		</td>
     	<td>
     		<%= data.id %>
     	</td>
     	<td>
-    		<%= data.created_at %>
+    		<%= data.order.created_at %>
     	</td>
     	<td>
     		<%= data.quantity %>
     	</td>
     	<td>
-    		<%= data.price_in_dollars * (data.quantity) %>
+    		<%= data.product.price_in_dollars * (data.quantity) %>
     	</td>
     	<td>
-    		<%= data.status %>
+    		<%= data.order.status %>
     	</td>
     <% end %>
   </tr>

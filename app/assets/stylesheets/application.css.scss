@@ -25,10 +25,29 @@
   font-family: 'Palanquin', sans-serif;
   font-size: 16px; 
  }
+ 
+ h2 {
+    color: #d8563d;
+ }
+
+ a {
+  color: #3f52b8;
+ }
 
  .thumnbnail {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.caption {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.caption p {
+  font-size: 15px;
+  margin: 0px;
 }
 

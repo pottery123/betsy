@@ -31,6 +31,11 @@ class UsersController < ApplicationController
   def show_merchant
     @merchant_order_items = OrderItem.select("*, order_items.id as order_item_id, order_items.order_id as order_id").joins(:product, :order).where("products.user_id": params[:id]).order(order_id: :asc)
     @total_revenue = OrderItem.joins(:product).where("products.user_id": params[:id]).sum("products.price_in_dollars")
+    @completed_orders = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "complete").count()
+    @pending_orders = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "pending").count()
+    @completed_orders_subtotal = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "complete").sum("products.price_in_dollars")
+    @pending_orders_subtotal = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "pending").sum("products.price_in_dollars")
+    # raise
 
     # merchant_products = Product.where(user_id: params[:id])
     # product_id_array = []

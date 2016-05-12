@@ -60,7 +60,7 @@
   <tr>
   	<% if data.shipped == true %>
     	<td>
-  			<%= link_to Product.find(data.product_id).name, order_item_path(data.id) %>
+  			<%= link_to data.name, order_item_path(data.id) %>
   		</td>
   		<td>
   			<%= data.order_id %>
@@ -75,7 +75,7 @@
     		<%= data.quantity %>
     	</td>
     	<td>
-    		<%= Product.find(data.product_id).price_in_dollars * (data.quantity) %>
+    		<%= data.price_in_dollars * (data.quantity) %>
     	</td>
     	<td>
     		<%= data.status %>
@@ -86,6 +86,12 @@
 </table>
 <h2>Total Revenue</h2>
 <%= @total_revenue %>
+<h2>Total Completed Orders</h2>
+Number of Orders: <%= @completed_orders %>
+Subtotal: <%= @completed_orders_subtotal %>
+<h2>Total Pending Orders</h2>
+Number of Orders: <%= @pending_orders %>
+Subtotal: <%= @pending_orders_subtotal %>
 
 
 

@@ -1,9 +1,11 @@
-<!-- <pre><%= params %></pre> -->
-<%= current_user.id %>
-<h1>Merchant Dashboard </h1>
-<h2>Welcome, <%=@merchant.user_name%>. Please use this dashboard to manage your store.<h2>
-
-
+<h2>
+  <i class="fa fa-tachometer" aria-hidden="true"></i>
+   Merchant Dashboard 
+</h2>
+<h3>
+  Welcome, m'sir <%=@merchant.user_name%>. </br>
+  Please use this dashboard to manage your store.
+</h3>
 
 <% if @category.errors.any? %>
   <ul class="errors">
@@ -16,59 +18,91 @@
 <% end %>
 
 
-<h3>Create a Category, if you please.</h3>
+<h4>
+  Create a Category, if you please.
+</h4>
 <%= form_for @category, :url => categories_path do |f| %>
-  <%= f.label :category_name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
+  <div class="form-group">
+    <div class="col-md-8">
+      <span><%= f.label :category_name %></span>
+      <%= f.text_field :name %>
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm", action: "create") do %>
+          Create Category
+        <% end %>
+    </div>
+  </div>
 <% end %>
+<h4>
+  All Categories, m'sir
+</h4>
 
-<h3>All Categories</h3>
 <ul>
 <% @categories.each do |category| %>
 	<li><%= category.name %></li>
 
 	<% end %></ul>
 
-<h3>Create a Product, if you please.</h3>
+<h4>Create a Product, if you please.</h4>
 <%= form_for @product do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :price %>
-  <%= f.text_field :price_in_dollars %>
-  <%= f.label :quantity %>
-  <%= f.text_field :quantity %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :image_url %>
-  <%= f.text_field :image_url %>
-
-  <% @categories.each do |category| %>
-   	<%= f.label :category_ids, "#{category.name}", :value => category.name %>
-  	<%= f.check_box :category_ids, {:multiple => true}, category.id, nil  %>
-	<% end %>
-
-	<%= f.hidden_field :user_id, :value => @merchant.id %>
-  <%= f.hidden_field :visible, :value => true %>
-
-  <%= f.submit %>
+  <div class="form-group">
+    <div class="col-md-8">
+      <span>
+        <%= f.label :name %>
+        <%= f.text_field :name %> </br>
+        <%= f.label :price %>
+        <%= f.text_field :price_in_dollars %> </br>
+        <%= f.label :quantity %> 
+        <%= f.text_field :quantity %> </br>
+        <%= f.label :description %>
+        <%= f.text_field :description %> </br>
+        <%= f.label :image_url %>
+        <%= f.text_field :image_url %> </br>
+      </span>
+    </div>
+  </div>
+<% @categories.each do |category| %>
+  <div class="form-group">
+    <div class="col-md-8">
+      <span>
+ 	      <%= f.label :category_ids, "#{category.name}", :value => category.name %>
+	      <%= f.check_box :category_ids, {:multiple => true}, category.id, nil  %>
+        <%= f.hidden_field :user_id, :value => @merchant.id %>
+        <%= f.hidden_field :visible, :value => true %>
+      </span>
+    </div>
+  </div>
+<% end %>
+</br>
+  <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm", action: "create") do %>
+    Create Product
+  <% end %>
 <% end %>
 
-<h3>Your Products!</h3>
-<table>
+<h4>Your Products, m'sir</h4>
+<div class='container'>
+<table class='table table-striped'>
+<th>Product
+</th>
+<th>Visibility
+</th>
+<th>Make Changes
 <% @products.each do |product| %>
-	<tr>
-		<td><%= link_to product.name, product_path(product.id) %></td>
+</th>
+  <tr>
+    <td><%= link_to product.name, product_path(product.id) %></td>
     <% if product.visible == true %>
       <td><%= "Visible to buyers" %></td>
     <% else %>
       <td><%= "Not visible to buyers" %></td>
     <% end %>
     <td><%= button_to "Edit", edit_product_path, :method => :get, params: {product_id: product.id} %></td>
-	</tr>
-	<% end %>
+  </tr>
+  <% end %>
 </table>
+</div>
 
-<h3>Manage Your Orders, brah.</h3>
+<h4>
+  Manage Your Orders, brah.
+</h4>
+<%= link_to "Manage Your Orders", orders_dashboard_path(@merchant.id), :class => "btn btn-primary btn-sm" %>
 
-<%= link_to "Manage Your Orders", orders_dashboard_path(@merchant.id) %>

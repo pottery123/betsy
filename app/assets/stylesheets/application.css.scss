@@ -36,19 +36,33 @@ h3 {
   padding: 1rem;
 }
 
+h4 { 
+
+  color: #3f52b8; /* ditzy dark blue */
+  font-size: 1.5rem;
+  padding: 1rem;
+
+}
+
+span {
+  color: #3f52b8; /* ditzy dark blue */
+}
+
 a {
   color: #3f52b8; /* ditzy dark blue */
 }
 
 p {
-  color: #3f52b8;
+  color: #3f52b8;  /* ditzy dark blue */
   font-size: 1rem;
   padding: 1rem;
 }
 
-span {
-  color: #3f52b8;
-}
+li { 
+  color: #42bad3; /* ditzy bright blue */ 
+  list-style-type: circle; 
+ }
+
 
 hr.dark-blue {
   border: 0.1rem solid #3f52b8;

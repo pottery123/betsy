@@ -7,10 +7,11 @@
   <div class="form-group">
     <p>
       Name on credit card: <%= f.text_field :name_on_cc %> <br />
+      Credit Card Number: <%= f.text_field :credit_card_number %> <br />
       Address: <%= f.text_field :address %><br />
       Zip: <%= f.text_field :zip %><br />
       Security Code: <%= f.text_field :security_on_cc %><br />
-      Expiration: <%= f.text_field :expiration_on_cc %><br />
+      Expiration (MM-YY): <%= f.text_field :expiration_on_cc %><br />
       Email: <%= f.text_field :email %><br />
       <% status = "pending" %>
       <% f.hidden_field :status => status %><br />

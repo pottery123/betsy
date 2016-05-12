@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     @order.name_on_cc = params[:orders][:name_on_cc]
     @order.address = params[:orders][:address]
     @order.security_on_cc = params[:orders][:security_on_cc]
-    @order.expiration_on_cc = params[:orders][:expiration_on_cc]
+    @order.expiration_on_cc = Date.strptime(params[:orders][:expiration_on_cc], '%m-%y')
     @order.email = params[:orders][:email]
     @order.zip = params[:orders][:zip]
     @order.updated_at = Time.now

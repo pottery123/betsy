@@ -4,4 +4,3 @@ class Review < ActiveRecord::Base
   validates :review_text, presence: true
   validates :rating, presence: true
 end
-xzz

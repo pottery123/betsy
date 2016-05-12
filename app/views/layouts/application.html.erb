@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 
+
     <link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet' type='text/css'>
     
 </head>
@@ -16,7 +17,9 @@
 <header>
   <%=link_to image_tag("ditzy_logo_final.png"), products_path%>
 <% if current_user %> 
-  Welcome, <%= current_user.user_name %>!
+  <span>
+    Welcome, <%= current_user.user_name %>!
+  </span>
   <%= link_to "Logout", logout_path, method: "delete", :class => "btn btn-primary btn-sm" %>
   <%= link_to "Dashboard", dashboard_path(current_user.id), method: "get", :class => "btn btn-primary btn-sm"  %> 
   <%= link_to "Your Cart", cart_path(current_user.id), method: "get", :class => "btn btn-primary btn-sm"  %>

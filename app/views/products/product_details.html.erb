@@ -7,6 +7,8 @@
     Price: <%= number_to_currency(@product.price_in_dollars) %></br>
     Quantity In Stock: <%= @product.quantity %></br>
     Description: <%= @product.description %></br>
+    Sold By: </br>
+    <!-- Query result here of merchant's name -->
   </p>
 
    <%=link_to "BUY NOW", cart_path(@product.id), method: :post, :class => "btn btn-primary btn-md" %>

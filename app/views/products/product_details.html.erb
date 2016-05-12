@@ -8,7 +8,11 @@
     Price: <%= number_to_currency(@product.price_in_dollars) %></br>
     Quantity In Stock: <%= @product.quantity %></br>
     Description: <%= @product.description %></br>
-    Sold by: <%= link_to @merchant.first.user_name,  merchant_store_path(@merchant.first.id) %></br>
+    <% if !(@product.user_id == nil) %>
+      Sold by: Mysterious Manly Man
+    <% else %> 
+      Sold by: <%= link_to @merchant.first.user_name,  merchant_store_path(@merchant.first.id) %></br>
+    <% end %>
   </p>
 
    <%=link_to "BUY NOW", cart_path(@product.id), method: :post, :class => "btn btn-primary btn-md" %>

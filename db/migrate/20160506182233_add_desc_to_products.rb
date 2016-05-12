@@ -1,7 +1,6 @@
 class AddDescToProducts < ActiveRecord::Migration
   def change
-      change_table :products do |t|
-      t.text :description
+      add_column :products, :description, :text
     end
   end
 end

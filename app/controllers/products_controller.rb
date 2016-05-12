@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
     # controller action: if @user_id (show "list" view for user)/if category (show "list" view by category)
     @product = Product.where(visible: true).find(params[:id])
     @reviews = Review.where(product_id: @product.id)
+    @merchant =  User.joins(:products).where("products.id": params[:id])
     render :product_details
   end
 
@@ -57,6 +58,11 @@ class ProductsController < ApplicationController
      redirect_to products_show_path(@current_user.id)
    end
   end 
+
+  def show_merchant_store
+    @merchant = User.find(params[:id])
+    @merchant_products = Product.where(user_id: @merchant.id)
+  end
 
   private
   def product_create_params

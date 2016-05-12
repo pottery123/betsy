@@ -9,10 +9,16 @@
   <% @product = Product.find(item.product_id) %>
   Item Ordered: <%= link_to @product.name, product_path(@product.id) %> </br>
   Quantity Ordered: <%= item.quantity %> </br>
+  Price per Item: <%= number_to_currency(@product.price_in_dollars) %> </br>
   Placed on: <%= @order.updated_at.strftime("%B %d, %Y") %> </br>
   Status: <%= @order.status %> </br> 
-  Shipped: 
-<% @total = (@product.price_in_dollars * item.quantity) %>
+  <% if item.shipped == true %>
+  Shipped: It's on the way, brah! 
+  <% else %> 
+  Shipped: Pending
+  <% end %> 
+<% @total += (@product.price_in_dollars * item.quantity) %>
+</br>
 <% end %>
 
   <p>Total Charges: <%= number_to_currency(@total) %></p>

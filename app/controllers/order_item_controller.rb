@@ -5,6 +5,7 @@ class OrderItemController < ApplicationController
   def index
     @order = Order.find(session[:order_id])
     @order_items = OrderItem.where(order_id: session[:order_id]).order("created_at asc")
+    
   end
 
   def create

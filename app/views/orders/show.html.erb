@@ -1,18 +1,12 @@
-<!-- Confirmation Page -->
+
 <h1> Order Complete! </h1>
+
+<% @total = 0 %>
+<% @total = (@product.price_in_dollars * @order_items.quantity) %>
 
 Item Ordered: <%= link_to @product.name, product_path(@product.id) %> </br>
 Quantity Ordered: <%= @order_items.quantity %> </br>
-Total Charged: <%= number_to_currency(@order.total) %></br>
+Total Charged: <%= number_to_currency(@total) %></br>
 Placed on: <%= @order.updated_at.strftime("%B %d, %Y") %> </br>
 Status: <%= @order.status %> </br> 
 Shipped: 
-
-
-<!--
-  done : each item in the order with a quantity and line item subtitle
-  done : link to item description page
-  done : order total price
-  done : datetime the order was placed
-  done : current status of the order
--->

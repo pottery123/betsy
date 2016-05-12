@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
     else
       render :new
     end
+    raise
   end
 
   def check_inventory(order)

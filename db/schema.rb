@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 20160511050101) do
     t.datetime "expiration_on_cc"
     t.integer  "zip"
     t.string   "email"
-    t.float    "total"
     t.string   "status"
     t.integer  "order_id"
+    t.float    "total"
   end
 
   create_table "products", force: :cascade do |t|
@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(version: 20160511050101) do
     t.integer  "user_id",          null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.boolean  "visible"
     t.integer  "quantity"
-    t.text     "image_url"
+    t.boolean  "visible"
+    t.string   "image_url"
     t.text     "description"
   end
 

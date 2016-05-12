@@ -3,16 +3,28 @@
   <i class="fa fa-check-square-o" aria-hidden="true"></i>
   Order Complete!
 </h2>
-
-<% @total = 0 %>
-<% @order_items.each do |item| %>
-  <% @product = Product.find(item.product_id) %>
-  Item Ordered: <%= link_to @product.name, product_path(@product.id) %> </br>
-  Quantity Ordered: <%= item.quantity %> </br>
-  Placed on: <%= @order.updated_at.strftime("%B %d, %Y") %> </br>
-  Status: <%= @order.status %> </br> 
-  Shipped: 
-<% @total = (@product.price_in_dollars * item.quantity) %>
-<% end %>
-
-  <p>Total Charges: <%= number_to_currency(@total) %></p>
+<div class='container'>
+  <div class='form-group'>
+    <% @total = 0 %>
+    <% @order_items.each do |item| %>
+      <% @product = Product.find(item.product_id) %>
+      
+      Item Ordered: <%= link_to @product.name, product_path(@product.id) %> </br>
+      Quantity Ordered: <%= item.quantity %> </br>
+      Price per Item: <%= number_to_currency(@product.price_in_dollars) %> </br>
+      Placed on: <%= @order.updated_at.strftime("%B %d, %Y") %> </br>
+      Status: <%= @order.status.capitalize %> </br> 
+      <% if item.shipped == true %>
+        Shipped: It's on the way, brah! 
+      <% else %> 
+        Shipped: Pending
+      <% end %> 
+      <% @total += (@product.price_in_dollars * item.quantity) %>
+      </br></br>
+      
+    <% end %>
+  </div>
+</div>
+  <p>
+    Total Charges: <%= number_to_currency(@total) %>
+  </p>

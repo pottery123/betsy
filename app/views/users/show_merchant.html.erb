@@ -1,15 +1,49 @@
 <h1>Manage Your Orders</h1>
 
+
 <table>
+	<tr>
+		<th>Unshipped Orders</th>
+	</tr>
+	<tr>
+		<th>Order Product</th>
+		<th>Order Item Number</th>
+		<th>Order Number</th>
+		<th>Shipping Status</th>
+	</tr>
 <% @merchant_order_items.each do |order| %>
   <tr>
-    <td><%= link_to "Order Item Number #{order.id} Order num #{order.order_id}", order_item_path(order.id) %></td>
-    <td>
+  	<% if order.shipped == false %>
+  	  <td>
+  			<%= link_to Product.find(order.product_id).name, order_item_path(order.id) %>
+  		</td>
+  		<td>
+  			<%= order.order_id %>
+  		</td>
+    	<td>
+    		<%= order.id %>
+    	</td>
+    	<td>
+	      <%= label_tag :mark_as_shipped %>
+	      <%= radio_button_tag :shipped, :true, :checked => :true %>
 
-    </td>
-    <td>
+    	</td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
 
-    </td>
+<table>
+	<tr>
+		<th>Shipped Orders</th>
+	</tr>
+<% @merchant_order_items.each do |order| %>
+  <tr>
+  	<% if order.shipped == true %>
+    	<td>
+    		<%= link_to "Order Item Number #{order.id} Order num #{order.order_id}", order_item_path(order.id) %>
+    	</td>
+    <% end %>
   </tr>
   <% end %>
 </table>
@@ -20,5 +54,4 @@
 
 <h2>Total Orders Shipped</h2>
 
-<h2>Total Unshipped/Pending Orders</h2>
 

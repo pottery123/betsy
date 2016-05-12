@@ -29,7 +29,6 @@ class OrdersController < ApplicationController
   end
 
   def check_inventory(order)
-
     order.order_items.each do |item|
       if item.product.quantity < 0
         flash[:error] = "Sorry, this is out of stock!"
@@ -44,4 +43,18 @@ class OrdersController < ApplicationController
       item.product.save
     end
   end
+
+  def complete_order
+    # locate the order and "complete it"
+    @order_details = OrderItem.where(session[:order_id])
+    clear_cart
+
+    #this is the confirmation page
+    redirect_to :show
+  end
+
+  def clear_cart
+    OrderItem.destroy(@order_details)
+  end
 end
+

@@ -1,0 +1,98 @@
+<h1>Manage Your Orders</h1>
+
+
+<table>
+	<tr>
+		<th><h2>Unshipped Orders</h2></th>
+	</tr>
+	<tr>
+		<th>Order Product</th>
+		<th>Order Item Number</th>
+		<th>Order Number</th>
+		<th>Order Time</th>
+		<th>Order Status</th>
+		<th>Shipping Status</th>
+	</tr>
+<% @merchant_order_items.each do |data| %>
+  <tr>
+  	<% if data.shipped == false %>
+  	  <td>
+  			<%= link_to data.product.name, order_item_path(data.order.id) %>
+  		</td>
+  		<td>
+  			<%= data.id %>
+  		</td>
+    	<td>
+    		<%= link_to data.order.id, merchant_order_path(data.order.id) %>
+    	</td>
+    	<td>
+    		<%= data.order.created_at %>
+    	</td>
+    	<td>
+    		<%= data.order.status %>
+    	</td>
+    	<td>
+    		<%= form_for data do |f| %>
+	      <%= f.label :mark_as_shipped %>
+	      <%= f.radio_button :shipped, :true, :checked => :true %>
+	      <%= f.submit %>
+	      <% end %>
+    	</td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<br><br><br><br>
+<table>
+	<tr>
+		<th><h2>Shipped Orders</h2></th>
+	</tr>
+	<tr>
+		<th>Order Product</th>
+		<th>Order Item Number</th>
+		<th>Order Number</th>
+		<th>Order Time</th>
+		<th>Quantity</th>
+		<th>Sale Total</th>
+		<th>Order Status</th>
+	</tr>
+<% @merchant_order_items.each do |data| %>
+  <tr>
+  	<% if data.shipped == true %>
+    	<td>
+  			<%= link_to data.product.name, order_item_path(data.id) %>
+  		</td>
+  		<td>
+  			<%= data.order.id %>
+  		</td>
+    	<td>
+    		<%= data.id %>
+    	</td>
+    	<td>
+    		<%= data.order.created_at %>
+    	</td>
+    	<td>
+    		<%= data.quantity %>
+    	</td>
+    	<td>
+    		<%= data.product.price_in_dollars * (data.quantity) %>
+    	</td>
+    	<td>
+    		<%= data.order.status %>
+    	</td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<h2>Total Revenue</h2>
+<%= @total_revenue %>
+<h2>Total Completed Orders</h2>
+Number of Orders: <%= @completed_orders %>
+Subtotal: <%= @completed_orders_subtotal %>
+<h2>Total Pending Orders</h2>
+Number of Orders: <%= @pending_orders %>
+Subtotal: <%= @pending_orders_subtotal %>
+
+
+
+

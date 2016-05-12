@@ -4,8 +4,36 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+wedding-football: 
 # column: value
-#
-two: {}
-#  column: value
+  name: "Wedding Football"
+  price_in_dollars: 240
+  user_id: 1
+  visible: true
+  quantity: 35
+orange-zest: 
+# column: value
+  name: "Candied Orange Zest"
+  price_in_dollars: 0.8
+  user_id: 1
+  visible: true
+  quantity: 35
+old-salad: 
+# column: value
+  name: "Sixty Day Old Salad"
+  price_in_dollars: 15
+  user_id: 1
+  visible: true
+  quantity: -4
+yoga-ball: 
+# column: value
+  name: "Used Yoga Balls"
+  price_in_dollars: 35
+  user_id: 1
+  visible: true
+  quantity: 0.001
+nameless:
+  name:
+  price_in_dollars: 35
+  user_id: 1
+  quantity: 75

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, except: [:new, :create, :bad_routei]
+  # before_action :require_login, except: [:new, :create, :bad_routei]
 
   def new
     @new_user = User.new
@@ -58,6 +58,11 @@ class UsersController < ApplicationController
       render "users/merchant"
     end
 
+    def update_order_item
+      @item = OrderItem.find(params[:id])
+      @item.update(update_order_item_params[:order_item])
+      redirect_to orders_dashboard_path(current_user.id)
+    end
 
 
   private
@@ -70,5 +75,9 @@ class UsersController < ApplicationController
 
   def user_create_params
     params.permit(user: [:user_name, :email, :password, :password_confirmation])
+  end
+
+  def update_order_item_params
+    params.permit(order_item: [:shipped])
   end
 end

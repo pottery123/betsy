@@ -24,15 +24,17 @@
     		<%= order.id %>
     	</td>
     	<td>
-	      <%= label_tag :mark_as_shipped %>
-	      <%= radio_button_tag :shipped, :true, :checked => :true %>
-
+    		<%= form_for order do |f| %>
+	      <%= f.label :mark_as_shipped %>
+	      <%= f.radio_button :shipped, :true, :checked => :true %>
+	      <%= f.submit %>
+	      <% end %>
     	</td>
     <% end %>
   </tr>
   <% end %>
 </table>
-
+<br>
 <table>
 	<tr>
 		<th>Shipped Orders</th>

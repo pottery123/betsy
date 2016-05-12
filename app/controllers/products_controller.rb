@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
     # controller action: if @user_id (show "list" view for user)/if category (show "list" view by category)
     @product = Product.where(visible: true).find(params[:id])
     @reviews = Review.where(product_id: @product.id)
+    @merchant =  User.joins(:products).where("products.id": params[:id])
     render :product_details
   end
 

@@ -1,35 +1,32 @@
 <section class="product-details">
-  <h1 class="product-name">
+  <h2>
     <%= @product.name %>
-  </h1>
+  </h2>
   <%=image_tag("#{@product.image_url}")%>
-  <p class="product-price">
-    Price: <%= @product.price_in_dollars %>
-  </p>
-  <p class="in-stock">
-    Quantity: <%= @product.quantity %>
-  </p>
   <p>
-    Description: <%= @product.description %>
+    Price: <%= number_to_currency(@product.price_in_dollars) %></br>
+    Quantity In Stock: <%= @product.quantity %></br>
+    Description: <%= @product.description %></br>
   </p>
 
-   <%=link_to "BUY NOW", cart_path(@product.id), method: :post %>
-
+   <%=link_to "BUY NOW", cart_path(@product.id), method: :post, :class => "btn btn-primary btn-md" %>
 
 </section>
 
-<section class="reviews">
-  <h1 class="reviews-title">Reviews</h1>
-  <p class="reviews-text">
+<section>
+  <h2>
+    Product Reviews
+  </h2>
+  <% @reviews.each do |review| %>
+    <p>
+      Rating: <%= review.rating %></br>
+      Review: <%= review.review_text %>
+    </p>
+  <%end%>
 
-    <% @reviews.each do |review| %>
-      <p> <%= review.rating %><br>
-        <%= review.review_text %></p>
-      <%end%>
-
-    <% if !current_user || current_user.id != @product.user_id %>
-    
-      <h1>Review this product</h1>
-      <%=link_to "review product", new_product_review_path(@product.id)%>
-
-    <% end %>
+  <% if !current_user || current_user.id != @product.user_id %>
+    <h3>
+      <%=link_to "Review this product", new_product_review_path(@product.id)%>
+    </h3>
+  <% end %>
+</section>

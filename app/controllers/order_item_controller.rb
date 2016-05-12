@@ -5,6 +5,7 @@ class OrderItemController < ApplicationController
   def index
     @order = Order.find(session[:order_id])
     @order_items = OrderItem.where(order_id: session[:order_id]).order("created_at asc")
+    
   end
 
   def create
@@ -28,6 +29,11 @@ class OrderItemController < ApplicationController
     @order_item = OrderItem.find(params[:id])
     @order_item.destroy
     redirect_to cart_path
+  end
+
+  def show
+    @order_item = OrderItem.find(params[:id])
+    @order_product = Product.find(@order_item.product_id)
   end
 
 end

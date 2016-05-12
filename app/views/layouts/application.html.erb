@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Betsy</title>
+  <title>dITzy*</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -15,17 +15,23 @@
 <body>
 <header>
   <%=link_to image_tag("ditzy_logo_final.png"), products_path%>
-
 <% if current_user %> 
   <%= current_user.email %>
-  <%= link_to "Logout", logout_path, method: "delete" %>
-  <%= link_to "Dashboard", dashboard_path(current_user.id), method: "get" %> 
-  <%= link_to "Your Cart", cart_path(current_user.id), method: "get" %>
+  <%= link_to "Logout", logout_path, method: "delete", :class => "btn btn-primary btn-sm" %>
+  <%= link_to "Dashboard", dashboard_path(current_user.id), method: "get", :class => "btn btn-primary btn-sm"  %> 
+  <%= link_to "Your Cart", cart_path(current_user.id), method: "get", :class => "btn btn-primary btn-sm"  %>
 <% else %> 
-  <%= link_to "Login", new_session_path %> 
-  <%= link_to "Create An Account", new_user_path %> 
-  <%= link_to "Your Cart", cart_path, method: "get" %>
+  <%= link_to "Login", new_session_path, :class => "btn btn-primary btn-sm"  %> 
+  <%= link_to "Create An Account", new_user_path, :class => "btn btn-primary btn-sm"  %> 
+  <%= link_to "Your Cart", cart_path, method: "get", :class => "btn btn-primary btn-sm"  %>
 <% end %>
+
+<h1 class='text-right'>
+  gr8 stuff 4 good lady*z
+</h1>
+
+<hr class='dark-blue'>
+<hr class='bright-blue'>
 
 </header>
   <main>

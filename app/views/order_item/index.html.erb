@@ -1,6 +1,5 @@
 <h2>
-  <i class="fa fa-shopping-cart" aria-hidden="true"></i> YOUR CART OF AWESOME 
-  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+  <i class="fa fa-shopping-cart" aria-hidden="true"></i> Your Cart of Awesome
 </h2>
 
 <% @total = 0 %>
@@ -34,8 +33,7 @@
 
   <p>Total: <%= number_to_currency(@total) %></p>
 
-<i class="fa fa-money" aria-hidden="true"></i>
-<%= link_to"Give us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
+<%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
 
 
-<%= link_to "Back To Shop", products_path, :class => "btn btn-primary btn-md" %>
+<%= link_to "Shop Some More", products_path, :class => "btn btn-primary btn-md" %>

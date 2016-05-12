@@ -61,6 +61,7 @@ class ProductsController < ApplicationController
 
   def show_merchant_store
     @merchant = User.find(params[:id])
+    @merchant_products = Product.where(user_id: @merchant.id)
   end
 
   private

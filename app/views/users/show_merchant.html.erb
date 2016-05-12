@@ -10,25 +10,29 @@
 		<th>Order Item Number</th>
 		<th>Order Number</th>
 		<th>Order Time</th>
+		<th>Order Status</th>
 		<th>Shipping Status</th>
 	</tr>
-<% @merchant_order_items.each do |order| %>
+<% @merchant_order_items.each do |data| %>
   <tr>
-  	<% if order.shipped == false %>
+  	<% if data.shipped == false %>
   	  <td>
-  			<%= link_to Product.find(order.product_id).name, order_item_path(order.id) %>
+  			<%= link_to data.name, order_item_path(data.order_item_id) %>
   		</td>
   		<td>
-  			<%= order.order_id %>
+  			<%= data.order_item_id %>
   		</td>
     	<td>
-    		<%= order.id %>
+    		<%= data.order_id %>
     	</td>
     	<td>
-    		<%= Order.all.find(order.id).created_at %>
+    		<%= data.created_at %>
     	</td>
     	<td>
-    		<%= form_for order do |f| %>
+    		<%= data.status %>
+    	</td>
+    	<td>
+    		<%= form_for data do |f| %>
 	      <%= f.label :mark_as_shipped %>
 	      <%= f.radio_button :shipped, :true, :checked => :true %>
 	      <%= f.submit %>
@@ -50,27 +54,31 @@
 		<th>Order Time</th>
 		<th>Quantity</th>
 		<th>Sale Total</th>
+		<th>Order Status</th>
 	</tr>
-<% @merchant_order_items.each do |order| %>
+<% @merchant_order_items.each do |data| %>
   <tr>
-  	<% if order.shipped == true %>
+  	<% if data.shipped == true %>
     	<td>
-  			<%= link_to Product.find(order.product_id).name, order_item_path(order.id) %>
+  			<%= link_to Product.find(data.product_id).name, order_item_path(data.id) %>
   		</td>
   		<td>
-  			<%= order.order_id %>
+  			<%= data.order_id %>
   		</td>
     	<td>
-    		<%= order.id %>
+    		<%= data.id %>
     	</td>
     	<td>
-    		<%= Order.all.find(order.id).created_at %>
+    		<%= data.created_at %>
     	</td>
     	<td>
-    		<%= order.quantity %>
+    		<%= data.quantity %>
     	</td>
     	<td>
-    		<%= Product.find(order.product_id).price_in_dollars * (order.quantity) %>
+    		<%= Product.find(data.product_id).price_in_dollars * (data.quantity) %>
+    	</td>
+    	<td>
+    		<%= data.status %>
     	</td>
     <% end %>
   </tr>
@@ -78,9 +86,7 @@
 </table>
 <h2>Total Revenue</h2>
 <%= @total_revenue %>
-<!-- revenue of shipped orders -->
-<!-- revenue of unshipped orders -->
 
-<h2>Total Orders Shipped</h2>
+
 
 

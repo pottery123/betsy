@@ -32,13 +32,13 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :reviews, :only => [:new, :create]
-    resources :orders
+    # resources :orders
   end
 
   resources :categories, :only => [:new, :create]
 
   resources :orders do
-    resources :users
+    # resources :users
   end
 
   # resources :reviews do

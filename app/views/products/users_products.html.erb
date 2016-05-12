@@ -1,12 +1,16 @@
-<h1 class="merchant"><%= @merchant.user_name %></h1>
-<h2 class="">Products</h2>
-
-
-<% @products.each do |product| %>
-	<p class="product-detail-listing">
-    <%=image_tag("#{product.image_url}")%>
-		<strong>Product ID:</strong> <%= product.id %><br>
-		<%= link_to product.name, product_path(product.id) %><br>
-		<%= product.price_in_dollars %>
-	</p>	
-<%end%>
+<h2>
+  <%= @merchant.user_name %>
+</h2>
+<h3>
+  Products
+</h3>
+<div class='form-group'>
+  <% @products.each do |product| %>
+  	<p class="product-detail-listing">
+      <%=image_tag("#{product.image_url}")%>
+  		<strong>Product ID:</strong> <%= product.id %><br>
+  		<%= link_to product.name, product_path(product.id) %><br>
+  		<%= product.price_in_dollars %>
+  	</p>	
+  <%end%>
+</div>

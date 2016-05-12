@@ -3,7 +3,7 @@
     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
     <%= @product.name %>
   </h2>
-  <%=image_tag("#{@product.image_url}")%>
+    <%=image_tag(("#{@product.image_url}"), :class => 'img-responsive') %>
   <p>
     Price: <%= number_to_currency(@product.price_in_dollars) %></br>
     Quantity In Stock: <%= @product.quantity %></br>

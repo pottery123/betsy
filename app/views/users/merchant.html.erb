@@ -17,10 +17,10 @@
   </ul>
 <% end %>
 
-<div class='container'>
-  <h4>
-    Create a Category, if you please.
-  </h4>
+<h4>
+  Create a Category, if you please.
+</h4>
+
   <%= form_for @category, :url => categories_path do |f| %>
     <div class="form-group">
       <div class="col-md-8">
@@ -34,25 +34,25 @@
       </div>
     </div>
   <% end %>
-</div>
 
-<div class='container'>
-  <h4>
-    All Categories, m'sir <%=@merchant.user_name%>.
-  </h4>
+
+<h4>
+  All Categories, m'sir <%=@merchant.user_name%>.
+</h4>
+
   <ul>
     <% @categories.each do |category| %>
     	<li>
-        <%= category.name %>
+        <%= category.name.capitalize %>
       </li>
     <% end %>
   </ul>
-</div>
 
-<div class='container'>
-  <h4>
-    Create a Product, if you please.
-  </h4>
+
+<h4>
+  Create a Product, if you please.
+</h4>
+
   <%= form_for @product do |f| %>
     <div class="form-group">
       <div class="col-md-8">
@@ -87,30 +87,33 @@
       </div>
     </div>
   <% end %>
-</div>
+
 
 <h4>Your Products, m'sir</h4>
-<div class='container'>
+
 <table class='table table-striped'>
-<th>Product
-</th>
-<th>Visibility
-</th>
-<th>Make Changes
-<% @products.each do |product| %>
-</th>
-  <tr>
-    <td><%= link_to product.name, product_path(product.id) %></td>
-    <% if product.visible == true %>
-      <td><%= "Visible to buyers" %></td>
-    <% else %>
-      <td><%= "Not visible to buyers" %></td>
-    <% end %>
-    <td><%= button_to "Edit", edit_product_path, :method => :get, params: {product_id: product.id} %></td>
-  </tr>
+  <th>
+    Product
+  </th>
+  <th>
+    Visibility
+  </th>
+  <th>
+    Make Changes
+  </th>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= link_to product.name, product_path(product.id) %></td>
+      <% if product.visible == true %>
+        <td><%= "Visible to buyers" %></td>
+      <% else %>
+        <td><%= "Not visible to buyers" %></td>
+      <% end %>
+      <td><%= button_to "Edit", edit_product_path, :method => :get, params: {product_id: product.id} %></td>
+    </tr>
   <% end %>
 </table>
-</div>
+
 
 <h4>
   Manage Your Orders, brah.

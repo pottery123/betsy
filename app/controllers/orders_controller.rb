@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
   # confirmation page 
   def show 
     @order = Order.find(session[:order_id])
-    @order_items = OrderItem.find(session[:order_id])
-    @product = Product.find(@order_items.product_id)
+    @order_items = OrderItem.where(order_id: session[:order_id]).order("created_at asc")
+    
     render :show
   end 
 
@@ -44,17 +44,17 @@ class OrdersController < ApplicationController
     end
   end
 
-  def complete_order
-    # locate the order and "complete it"
-    @order_details = OrderItem.where(session[:order_id])
-    clear_cart
+  # def complete_order
+  #   # locate the order and "complete it"
+  #   @order_details = OrderItem.where(session[:order_id])
+  #   clear_cart
 
-    #this is the confirmation page
-    redirect_to :show
-  end
+  #   #this is the confirmation page
+  #   redirect_to :show
+  # end
 
-  def clear_cart
-    OrderItem.destroy(@order_details)
-  end
+  # def clear_cart
+  #   OrderItem.destroy(@order_details)
+  # end
 end
 

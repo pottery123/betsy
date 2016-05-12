@@ -2,11 +2,14 @@
 <h1> Order Complete! </h1>
 
 <% @total = 0 %>
-<% @total = (@product.price_in_dollars * @order_items.quantity) %>
+<% @order_items.each do |item| %>
+  <% @product = Product.find(item.product_id) %>
+  Item Ordered: <%= link_to @product.name, product_path(@product.id) %> </br>
+  Quantity Ordered: <%= item.quantity %> </br>
+  Placed on: <%= @order.updated_at.strftime("%B %d, %Y") %> </br>
+  Status: <%= @order.status %> </br> 
+  Shipped: 
+<% @total = (@product.price_in_dollars * item.quantity) %>
+<% end %>
 
-Item Ordered: <%= link_to @product.name, product_path(@product.id) %> </br>
-Quantity Ordered: <%= @order_items.quantity %> </br>
-Total Charged: <%= number_to_currency(@total) %></br>
-Placed on: <%= @order.updated_at.strftime("%B %d, %Y") %> </br>
-Status: <%= @order.status %> </br> 
-Shipped: 
+  <p>Total Charges: <%= number_to_currency(@total) %></p>

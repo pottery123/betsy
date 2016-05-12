@@ -31,4 +31,9 @@ class OrderItemController < ApplicationController
     redirect_to cart_path
   end
 
+  def show
+    @order_item = OrderItem.find(params[:id])
+    @order_product = Product.find(@order_item.product_id)
+  end
+
 end

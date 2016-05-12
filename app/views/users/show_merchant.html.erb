@@ -3,7 +3,7 @@
 <table>
 <% @merchant_order_items.each do |order| %>
   <tr>
-    <td><%= link_to "Order Item Number #{order.id} Order num #{order.order_id}", order_path(order.id) %></td>
+    <td><%= link_to "Order Item Number #{order.id} Order num #{order.order_id}", order_item_path(order.id) %></td>
     <td>
 
     </td>
@@ -13,3 +13,12 @@
   </tr>
   <% end %>
 </table>
+<h2>Total Revenue</h2>
+<%= @total_revenue %>
+<!-- revenue of shipped orders -->
+<!-- revenue of unshipped orders -->
+
+<h2>Total Orders Shipped</h2>
+
+<h2>Total Unshipped/Pending Orders</h2>
+

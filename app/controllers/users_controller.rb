@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   def show_merchant
     @merchant_order_items = OrderItem.joins(:product).where("products.user_id": params[:id])
+    @total_revenue = OrderItem.joins(:product).where("products.user_id": params[:id]).sum("products.price_in_dollars")
 
     # merchant_products = Product.where(user_id: params[:id])
     # product_id_array = []

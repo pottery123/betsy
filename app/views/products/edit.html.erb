@@ -1,43 +1,36 @@
-<h1>Hi buddy, edit your product</h1>
-<%= params %>
-
-<%= form_for @product do |f| %>
-	<table>
-		<td>
-			<%= f.label :name %>
-  		<%= f.text_field :name %>
-  	</td>
-  	<td>
-			<%= f.label :price_in_dollars %>
-  		<%= f.text_field :price_in_dollars %>
-  	</td>
-   	<td>
-			<%= f.label :quantity %>
-  		<%= f.text_field :quantity %>
-  	</td>
-   	<td>
-  		<%= f.label :visibility %>
+<h2>
+  <i class="fa fa-pencil-square-o" aria-hidden="true"> </i>
+  Hi buddy, edit your product
+</h2>
+<div class 'form-group'>
+  <%= form_for @product do |f| %>
+    <span>
+      <%= f.label :name %>
+      <%= f.text_field :name %> </br>
+      <%= f.label :price_in_dollars %>
+      <%= f.text_field :price_in_dollars %> </br>
+      <%= f.label :quantity %>
+      <%= f.text_field :quantity %> </br>
+      <%= f.label :visibility %>
       <%= f.label :true %>
       <%= f.radio_button :visible, :true, :checked => :true %>
       <%= f.label :false %>
-      <%= f.radio_button :visible, :false, :checked => :false %>
-  	</td>
-   	<td>
-			<%= f.label :image_url %>
-  		<%= f.text_field :image_url %>
-  	</td>
-   	<td>
-			<%= f.label :description %>
-  		<%= f.text_field :description %>
-  	</td>
-    <td>
+      <%= f.radio_button :visible, :false, :checked => :false %> </br>
+      <%= f.label :image_url %>
+      <%= f.text_field :image_url %> </br>
+      <%= f.label :description %>
+      <%= f.text_field :description %> </br>
+      <strong>
+        Categories:
+      </strong>
       <% @categories.each do |category| %>
         <%= f.label :category_ids, "#{category.name}", :value => category.name %>
         <%= f.check_box :category_ids, {:multiple => true}, category.id, nil  %>
       <% end %>
-    </td>
-    	<td>
-    		<%= f.submit %>
-    	</td>
-		<% end %>
-	</table>
+    </span>
+    </br>
+    <%= button_tag(type: 'submit', class: "btn btn-primary btn-md", action: "edit") do %>
+      Submit Changes
+    <% end %>
+  <% end %>
+</div>

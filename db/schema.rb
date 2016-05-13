@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20160513163658) do
     t.string   "expiration_on_cc"
     t.integer  "zip"
     t.string   "email"
-    t.string   "status"
     t.float    "total"
+    t.string   "status"
     t.integer  "credit_card_number"
   end
 
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20160513163658) do
     t.integer  "user_id",          null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "quantity"
     t.boolean  "visible"
+    t.integer  "quantity"
     t.text     "image_url"
     t.text     "description"
   end

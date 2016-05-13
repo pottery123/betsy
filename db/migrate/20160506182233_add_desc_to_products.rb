@@ -3,3 +3,4 @@ class AddDescToProducts < ActiveRecord::Migration
     add_column :products, :description, :string
   end
 end
+

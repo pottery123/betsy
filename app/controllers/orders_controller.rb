@@ -3,17 +3,19 @@ class OrdersController < ApplicationController
   def show 
     @order = Order.find(session[:order_id])
     @order_items = OrderItem.where(order_id: session[:order_id]).order("created_at asc")
-    
     render :show
   end 
 
   def create
     @order = Order.find(session[:order_id])
+    @order.expiration_on_cc = "#{params[:orders][:month]}-#{params[:orders][:year]}"
+    # @order.expiration_on_cc = params[:orders][:month]
+
     @order.status = "complete"
     @order.name_on_cc = params[:orders][:name_on_cc]
     @order.address = params[:orders][:address]
     @order.security_on_cc = params[:orders][:security_on_cc]
-    @order.expiration_on_cc = params[:orders][:expiration_on_cc]
+    # @order.expiration_on_cc = Date.strptime(params[:orders][:expiration_on_cc], '%m-%y')
     @order.email = params[:orders][:email]
     @order.zip = params[:orders][:zip]
     @order.updated_at = Time.now

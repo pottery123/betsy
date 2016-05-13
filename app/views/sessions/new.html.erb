@@ -1,11 +1,18 @@
-<h1>Login</h1>
+<h2>Login</h2>
+<div class='container'>
+<div class="form-group">
+  <span>
 <%= form_for(:session_data, url: sessions_path) do |f| %>
 
 	<%= f.label :email, 'Email Address:'  %>
 	<%= f.text_field :email%>
 
-	<%= f.label :email, 'Password (secret):' %>
+	<%= f.label :email, 'Password:' %>
 	<%= f.password_field :password %>
-	<%= f.submit 'Sign-in' %>
+	      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm", action: "create") do %>
+          Sign-in 
+      <% end %>
 <% end %>
-
+</span>
+</div>
+</div>

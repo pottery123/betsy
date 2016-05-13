@@ -3,14 +3,13 @@ class OrdersController < ApplicationController
   def show 
     @order = Order.find(session[:order_id])
     @order_items = OrderItem.where(order_id: session[:order_id]).order("created_at asc")
-    raise
     render :show
   end 
 
   def create
     @order = Order.find(session[:order_id])
-    # @order.expiration_on_cc = "#{params[:orders][:month]}-#{params[:orders][:year]}"
-    @order.expiration_on_cc = params[:orders][:month]
+    @order.expiration_on_cc = "#{params[:orders][:month]}-#{params[:orders][:year]}"
+    # @order.expiration_on_cc = params[:orders][:month]
 
     @order.status = "complete"
     @order.name_on_cc = params[:orders][:name_on_cc]
@@ -25,7 +24,6 @@ class OrdersController < ApplicationController
     check_inventory(@order)
     if @order.save
       reduce_inventory(@order)
-      raise
       redirect_to complete_order_path
     else
       render :new

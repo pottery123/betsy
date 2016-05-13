@@ -11,7 +11,9 @@
       Address: <%= f.text_field :address %><br />
       Zip: <%= f.text_field :zip %><br />
       Security Code: <%= f.text_field :security_on_cc %><br />
-      Expiration (MM-YY): <%= f.text_field :expiration_on_cc %><br />
+      Expiration:
+      <%= f.select :month, 1..12 %>
+      <%= f.select :year, Date.today.year.. 8.years.from_now.year %><br />
       Email: <%= f.text_field :email %><br />
       <% status = "pending" %>
       <% f.hidden_field :status => status %><br />

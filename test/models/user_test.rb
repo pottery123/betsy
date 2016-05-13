@@ -21,4 +21,15 @@ class UserTest < ActiveSupport::TestCase
     assert_respond_to user, :password_digest
     assert_respond_to user, :authenticate, "User requires has_secure_password"
   end
+
+  test "can authenticate known users" do
+    leah = users(:leah)
+    assert_equal leah, User.log_in(leah.email, "password")
+  end
+
+  test "user passwords must match" do
+    u = User.new(password: "dog", password_confirmation: "cat")
+    assert_not u.valid?
+    assert_includes u.errors.keys, :password_confirmation
+  end
 end

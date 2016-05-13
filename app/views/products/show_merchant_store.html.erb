@@ -7,7 +7,7 @@
 </h3>
 <p>
 <% @merchant_products.each do |product| %>
-  <%=image_tag product.image_url%></br>
+  <%=image_tag(("#{product.image_url}"), :class => 'img-responsive')%></br>
 	Product: <%=product.name%></br>
 	Price: <%=product.price_in_dollars%></br>
 	Description: <%=product.description%></br></br>

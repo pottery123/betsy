@@ -1,9 +1,17 @@
-<h1> Welcome to <%= @merchant.user_name.capitalize%>'s Store!' </h1>
-<ul>
+<h2> 
+  <i class="fa fa-user" aria-hidden="true"></i>
+  Welcome to <%= @merchant.user_name.capitalize%>'s Store!
+</h2>
+<h3>
+  Products
+</h3>
+<p>
 <% @merchant_products.each do |product| %>
-	<li><%=image_tag product.image_url%>
-	Product: <%=product.name%>
-	Price: <%=product.price_in_dollars%>
-	Description: <%=product.description%></li>
-</ul>
+  <%=image_tag product.image_url%></br>
+	Product: <%=product.name%></br>
+	Price: <%=product.price_in_dollars%></br>
+	Description: <%=product.description%></br></br>
 <% end %>
+</p>
+
+<%= link_to "Shop Some More", products_path, :class => "btn btn-primary btn-md" %>

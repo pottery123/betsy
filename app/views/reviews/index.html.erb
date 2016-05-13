@@ -1,16 +1,17 @@
-<h1>
+<h2>
+  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
   Add a comment:
-</h1>
+</h2>
+<div class='form-group'>
 <%= form_for([@product,@review]) do |f| %>
-  <p>
+  <span>
     <%= f.label :commenter %><br>
     <%= f.text_field :commenter %>
-  </p>
-  <p>
     <%= f.label :body %><br>
     <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+    <%= button_tag(type: 'submit', class: "btn btn-primary btn-md", action: "create") do %>
+        Add comment 
+      <% end %>
+  </span>
 <% end %>
+<div>

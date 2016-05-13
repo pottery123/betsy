@@ -29,8 +29,6 @@ class ReviewsController < ApplicationController
 
   end
 
-
-
   def edit
     @review = Reviews.find(params[:id])
     render :new

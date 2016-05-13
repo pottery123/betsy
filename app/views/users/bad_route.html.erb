@@ -1,9 +1,13 @@
-<h1>YOU CAN'T VIEW THIS!</h1>
+<h2>YOU CAN'T VIEW THIS!</h2>
 
 <p>Please use your back button and try again.</p>
 
 <% if @category.errors.any? %>
-  <ul class="errors">
+  <h3>
+  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 
+    Something is Broken :( 
+  </h3>
+  <ul>
     <% @category.errors.each do |column, message| %>
       <li>
         <strong><%= column.capitalize %></strong> <%= message %>

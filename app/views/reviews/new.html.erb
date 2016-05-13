@@ -17,11 +17,9 @@
         <%= f.hidden_field :product_id, :value => params[:product_id] %><br>
       </p>
     </div>
-    <div class="form-group">
-      <%= button_to(type: 'submit', class: "btn btn-primary btn-md", action: "create") do %>
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm", action: "create") do %>
         Save
       <% end %>
-    </div>
   <% end %>
 <% else %>
   <h3>  

@@ -53,40 +53,36 @@
   Create a Product, if you please.
 </h4>
 
-  <%= form_for @product do |f| %>
-    <div class="form-group">
-      <div class="col-md-8">
-        <span>
-          <%= f.label :name %>
-          <%= f.text_field :name %> </br>
-          <%= f.label :price %>
-          <%= f.text_field :price_in_dollars %> </br>
-          <%= f.label :quantity %> 
-          <%= f.text_field :quantity %> </br>
-          <%= f.label :description %>
-          <%= f.text_field :description %> </br>
-          <%= f.label :image_url %>
-          <%= f.text_field :image_url %> </br>
-        </span>
-      </div>
+<%= form_for @product do |f| %>
+  <div class="form-group">
+    <div class="col-md-8">
+      <span>
+        <%= f.label :name %>
+        <%= f.text_field :name %> </br>
+        <%= f.label :price %>
+        <%= f.text_field :price_in_dollars %> </br>
+        <%= f.label :quantity %> 
+        <%= f.text_field :quantity %> </br>
+        <%= f.label :description %>
+        <%= f.text_field :description %> </br>
+        <%= f.label :image_url %>
+        <%= f.text_field :image_url %> </br>
+      </span>
     </div>
-    <% @categories.each do |category| %>
-      <div class="form-group">
-        <div class="col-md-8">
-          <span>
-     	      <%= f.label :category_ids, "#{category.name}", :value => category.name %>
-    	      <%= f.check_box :category_ids, {:multiple => true}, category.id, nil  %>
-            <%= f.hidden_field :user_id, :value => @merchant.id %>
-            <%= f.hidden_field :visible, :value => true %>
-          </span>
-    <% end %>
-    </br>
-    <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm", action: "create") do %>
-      Create Product
-    <% end %>
-      </div>
-    </div>
+  </div>
+  <% @categories.each do |category| %>
+    <span>
+	      <%= f.label :category_ids, "#{category.name}", :value => category.name %>
+      <%= f.check_box :category_ids, {:multiple => true}, category.id, nil  %>
+      <%= f.hidden_field :user_id, :value => @merchant.id %>
+      <%= f.hidden_field :visible, :value => true %>
+    </span>
   <% end %>
+  </br>
+  <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm", action: "create") do %>
+    Create Product
+  <% end %>
+<% end %>
 
 
 <h4>Your Products, m'sir</h4>

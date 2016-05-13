@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
- before_action :require_login, except: [:new, :create, :bad_route]
+ # commenting this out because it breaks things and Rowan is not here to explain it 
+ # before_action :require_login, except: [:new, :create, :bad_route]
 
   def new
     @new_user = User.new

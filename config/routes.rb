@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   get '/complete' => 'orders#show', as: 'complete_order'
   get '/checkout' => 'orders#new', as: 'checkout'
   
-  # THERE IS A DUPLICATE ROUTE HERE AND I DON'T KNOW WHICH ONE CHECKOUT NEEDS!
   post '/checkout' => 'orders#create'
-  post '/checkout' => 'orders#complete_order'
+
 
   get '/cart' => 'order_item#index', as: 'cart'
   post '/cart' => 'order_item#create'
@@ -37,7 +36,6 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :reviews, :only => [:new, :create]
-    # resources :orders
   end
 
   resources :categories, :only => [:new, :create]
@@ -45,10 +43,5 @@ Rails.application.routes.draw do
   resources :orders do
     # resources :users
   end
-
-  # resources :reviews do
-  #   resources :users
-  #   resources :products
-  # end
 
 end

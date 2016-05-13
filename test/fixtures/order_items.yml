@@ -3,3 +3,8 @@
   order_id: 5
   product_id: 2
   quantity: 50
+
+3:
+  order_id: 5
+  product_id: 25
+  quantity: 0

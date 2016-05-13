@@ -1,11 +1,14 @@
 require 'test_helper'
 
 class OrderItemTest < ActiveSupport::TestCase
-  test "order_item quantity can't be 0" do
+  test "order_item quantity can't be 0 upon creation" do
     item = OrderItem.new
-
-  
     assert_not_same(item.quantity,0) 
+  end
+
+  test "shipped default is false" do
+    item = OrderItem.new
+    assert_equal(item.shipped, false)
   end
 
 end

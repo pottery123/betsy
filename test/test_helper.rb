@@ -11,6 +11,7 @@ class ActiveSupport::TestCase
   fixtures :products
   fixtures :users
   fixtures :order_items
+  # fixtures :categories
 
 
   # Add more helper methods to be used by all tests here...

@@ -26,11 +26,11 @@ end
 #   Order.create(row.to_h)
 # end
 
-# USERS = './seed_csvs/users.csv'
+ USERS = './seed_csvs/users.csv'
 
-# CSV.foreach(USERS, headers: true) do |row|
-#   User.create(row.to_h)
-# end
+ CSV.foreach(USERS, headers: true) do |row|
+   User.create(row.to_h)
+ end
 
 # ORDERITEMS = './seed_csvs/orderitems.csv'
 

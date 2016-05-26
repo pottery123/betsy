@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/checkout' => 'orders#create'
 
   post '/cart/shipping' => 'order_item#shipping'
+  post 'cart/total' => 'order_item#total'
 
   get '/cart' => 'order_item#index', as: 'cart'
   post '/cart' => 'order_item#create'

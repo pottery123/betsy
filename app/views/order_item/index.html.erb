@@ -3,7 +3,7 @@
 </h2>
 
 <div class="form-group">
-  <div class="col-md-6">
+  <div class="col-md-7">
     <% @total = 0 %>
     <% @order_items.each do |item| %>
       <% product = Product.find(item.product_id) %>
@@ -33,6 +33,11 @@
 
       <p>Subtotal: <%= number_to_currency(@total) %></p>
 
+      <% if params[:zipcode] %>
+        <p>Shipping Costs: <%= number_to_currency(4) %></p>
+        <p>Total: <%= number_to_currency(@total + 4) %></p>
+      <% end %>
+
     <%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
 
     <%= link_to "Shop Some More", products_path, :class => "btn btn-primary btn-md" %>
@@ -41,7 +46,7 @@
 
 <!-- Maybe move to the checkout_path so that we can add in the costs -->
 <div class="form-group">
-  <div class="col-md-6">
+  <div class="col-md-5">
     <%= form_tag('/cart/shipping') do %>
           <span>
             <%= label_tag :zipcode %>
@@ -71,6 +76,8 @@
           </li>
         </ul>
       <% end %>
+      <%= button_to "Update", cart_total_path, :class => "btn btn-primary btn-md" %>
+      <%# raise %>
     <% end %>
   </div>
 </div>

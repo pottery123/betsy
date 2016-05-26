@@ -16,6 +16,33 @@ ActiveRecord::Schema.define(version: 20160526172309) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "billings", force: :cascade do |t|
+    t.string   "first_name",      null: false
+    t.string   "last_name",       null: false
+    t.string   "email",           null: false
+    t.string   "cc",              null: false
+    t.integer  "cvv",             null: false
+    t.integer  "billing_zip",     null: false
+    t.string   "address",         null: false
+    t.string   "address2"
+    t.string   "city",            null: false
+    t.string   "state",           null: false
+    t.integer  "zip",             null: false
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "expiration_date", null: false
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "quantity",   null: false
+    t.integer  "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "session_id"
+    t.string   "user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,6 +82,13 @@ ActiveRecord::Schema.define(version: 20160526172309) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.integer  "product_id",  null: false
+    t.integer  "category_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "products", force: :cascade do |t|

@@ -39,14 +39,14 @@
   </div>
 </div>
 
+<!-- Maybe move to the checkout_path so that we can add in the costs -->
 <%= form_tag('/cart/shipping') do %>
   <div class="form-group">
     <div class="col-md-4">
-      <!-- <span> -->
+      <span>
         <%= label_tag :zipcode %>
-      <!-- </span> -->
+      </span>
       <%= text_field_tag :zipcode %>
-      <%#= hidden_field_tag :quantity, :value => @total_items %>
       <p>
         <%= submit_tag("Get Quote", :class => "btn btn-primary btn-md") %>
       </p>

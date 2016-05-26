@@ -3,7 +3,7 @@
 </h2>
 
 <div class="form-group">
-  <div class="col-md-8">
+  <div class="col-md-6">
     <% @total = 0 %>
     <% @order_items.each do |item| %>
       <% product = Product.find(item.product_id) %>
@@ -41,7 +41,7 @@
 
 <!-- Maybe move to the checkout_path so that we can add in the costs -->
 <div class="form-group">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <%= form_tag('/cart/shipping') do %>
           <span>
             <%= label_tag :zipcode %>
@@ -56,7 +56,7 @@
     <% if params[:zipcode] %>
       <% @quotes["fedex"].each do |service_name| %>
         <ul>
-          <li>
+          <li class="shipping">
             <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
             <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
           </li>
@@ -65,7 +65,7 @@
 
       <% @quotes["usps"].each do |service_name| %>
         <ul>
-          <li>
+          <li class="shipping">
             <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
             <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
           </li>

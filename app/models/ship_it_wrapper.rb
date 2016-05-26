@@ -8,9 +8,8 @@ module ShipItWrapper
   # carrier = "usps"
 
 
-  def self.get_quote(carrier, address)
-    HTTParty.get(BASE_URL + "/quotes/#{carrier}", body: { shipping: {
-            "carrier" => carrier,
+  def self.get_quote(address)
+    HTTParty.get(BASE_URL + "/quotes", body: { shipping: {
             "address" => address
           }.to_json }).parsed_response
   end

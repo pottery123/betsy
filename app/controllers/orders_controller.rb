@@ -1,19 +1,22 @@
 class OrdersController < ApplicationController
-  # confirmation page 
-  def show 
+  # confirmation page
+  def show
     @order = Order.find(session[:order_id])
     @order_items = OrderItem.where(order_id: session[:order_id]).order("created_at asc")
     render :show
-  end 
+  end
 
   def create
     @order = Order.find(session[:order_id])
     @order.expiration_on_cc = "#{params[:orders][:month]}-#{params[:orders][:year]}"
     # @order.expiration_on_cc = params[:orders][:month]
 
-    @order.status = "complete"
+    @order.status = "pending" # Order is pending until they select shipping
     @order.name_on_cc = params[:orders][:name_on_cc]
     @order.address = params[:orders][:address]
+    @order.country = params[:orders][:country]
+    @order.state = params[:orders][:state]
+    @order.city = params[:orders][:city]
     @order.security_on_cc = params[:orders][:security_on_cc]
     # @order.expiration_on_cc = Date.strptime(params[:orders][:expiration_on_cc], '%m-%y')
     @order.email = params[:orders][:email]
@@ -23,11 +26,18 @@ class OrdersController < ApplicationController
     # Send to the confirmation page aka orders#show
     check_inventory(@order)
     if @order.save
-      reduce_inventory(@order)
-      redirect_to complete_order_path
+      # get quotes
+      address = { country: @order.country, state:  @order.state, city:  @order.city, zip:  @order.zip }
+      @order.rates = ShipItWrapper.get_quote(address)
     else
       render :new
     end
+  end
+
+  def place_order #after they select shipping
+    reduce_inventory(@order)
+    redirect_to complete_order_path
+    # render :new
   end
 
   def check_inventory(order)
@@ -59,4 +69,3 @@ class OrdersController < ApplicationController
   #   OrderItem.destroy(@order_details)
   # end
 end
-

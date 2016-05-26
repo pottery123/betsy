@@ -31,7 +31,7 @@
       <% @total += (product.price_in_dollars * item.quantity) %>
     <% end %>
 
-      <p>Total: <%= number_to_currency(@total) %></p>
+      <p>Subtotal: <%= number_to_currency(@total) %></p>
 
     <%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
 
@@ -53,5 +53,12 @@
     </div>
   </div>
 <% end %>
+<!-- @total + whatever quote they chose -->
 
-<%= @quotes.inspect %>
+<% if params[:zipcode] %>
+  <% @quotes["fedex"].each do |service_name| %>
+    <p>
+      <%= "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
+    </p>
+  <% end %>
+<% end %>

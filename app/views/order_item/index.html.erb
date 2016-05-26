@@ -40,25 +40,31 @@
 </div>
 
 <!-- Maybe move to the checkout_path so that we can add in the costs -->
-<%= form_tag('/cart/shipping') do %>
-  <div class="form-group">
-    <div class="col-md-4">
-      <span>
-        <%= label_tag :zipcode %>
-      </span>
-      <%= text_field_tag :zipcode %>
-      <p>
-        <%= submit_tag("Get Quote", :class => "btn btn-primary btn-md") %>
-      </p>
-    </div>
-  </div>
-<% end %>
-<!-- @total + whatever quote they chose -->
+<div class="form-group">
+  <div class="col-md-4">
+    <%= form_tag('/cart/shipping') do %>
+          <span>
+            <%= label_tag :zipcode %>
+          </span>
+          <%= text_field_tag :zipcode %>
+          <p>
+            <%= submit_tag("Get Quote", :class => "btn btn-primary btn-md") %>
+          </p>
+    <% end %>
+    <!-- @total + whatever quote they chose -->
 
-<% if params[:zipcode] %>
-  <% @quotes["fedex"].each do |service_name| %>
-    <p>
-      <%= "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
-    </p>
-  <% end %>
-<% end %>
+    <% if params[:zipcode] %>
+      <% @quotes["fedex"].each do |service_name| %>
+        <p>
+          <%= "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
+        </p>
+      <% end %>
+
+      <% @quotes["usps"].each do |service_name| %>
+        <p>
+          <%= "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

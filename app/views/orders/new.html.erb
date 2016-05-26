@@ -21,8 +21,14 @@
       <% status = "pending" %>
       <% f.hidden_field :status => status %><br />
       <%= button_tag(type: 'submit', class: "btn btn-primary btn-md", action: "create") do %>
-          Submit
+          Select Shipping
       <% end %>
     </p>
   </div>
 <%end%>
+
+<% if @shipping %>
+  <%= form_for :shipping %>
+
+  <% end %>
+<% end %>

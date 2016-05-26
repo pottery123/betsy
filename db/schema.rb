@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 20160513163658) do
     t.integer  "credit_card_number"
   end
 
+  create_table "product_categories", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "product_categories", ["category_id"], name: "index_product_categories_on_category_id", using: :btree
+  add_index "product_categories", ["product_id"], name: "index_product_categories_on_product_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.text     "name",             null: false
     t.decimal  "price_in_dollars", null: false

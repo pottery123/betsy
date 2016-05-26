@@ -55,15 +55,21 @@
 
     <% if params[:zipcode] %>
       <% @quotes["fedex"].each do |service_name| %>
-        <p>
-          <%= "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
-        </p>
+        <ul>
+          <li>
+            <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
+            <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
+          </li>
+        </ul>
       <% end %>
 
       <% @quotes["usps"].each do |service_name| %>
-        <p>
-          <%= "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
-        </p>
+        <ul>
+          <li>
+            <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
+            <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
+          </li>
+        </ul>
       <% end %>
     <% end %>
   </div>

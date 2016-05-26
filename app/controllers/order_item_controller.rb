@@ -13,7 +13,7 @@ class OrderItemController < ApplicationController
     @order_items = OrderItem.where(order_id: session[:order_id])
     if params[:zipcode]
       quantity = @order_items.inject(0) { |sum, n| sum + n[:quantity]}
-      @quotes = BetsyShippingWrapper.get_quotes(79912, 6)
+      @quotes = BetsyShippingWrapper.get_quotes(params[:zipcode], quantity)
     end
     render :index
   end

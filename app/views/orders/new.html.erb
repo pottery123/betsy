@@ -9,6 +9,9 @@
       Name on credit card: <%= f.text_field :name_on_cc %> <br />
       Credit Card Number: <%= f.text_field :credit_card_number %> <br />
       Address: <%= f.text_field :address %><br />
+      City: <%= f.text_field :city %><br />
+      State: <%= f.text_field :state, placeholder: "WA" %><br />
+      Country: <%= f.select :country, options_for_select([['United States', 'US'], ['Mexico', 'MX'], ['Canada', 'CA']]) %> <br />
       Zip: <%= f.text_field :zip %><br />
       Security Code: <%= f.text_field :security_on_cc %><br />
       Expiration:

@@ -34,8 +34,8 @@
       <p>Subtotal: <%= number_to_currency(@total) %></p>
 
       <% if params[:zipcode] || params[:service_name] %>
-        <p>Shipping Cost: <%= number_to_currency(@shipping) %></p>
-        <p>Total: <%= number_to_currency(@total + @shipping) %></p>
+        <p>Shipping Cost: <%= !params[:service_name].nil? ? number_to_currency(@shipping) : "$0.00" %></p>
+        <p>Total: <%= !params[:service_name].nil? ? number_to_currency(@total + @shipping) : number_to_currency(@total) %></p>
       <% end %>
 
     <%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
@@ -56,7 +56,6 @@
             <%= submit_tag("Get Quote", :class => "btn btn-primary btn-md") %>
           </p>
     <% end %>
-    <!-- @total + whatever quote they chose -->
 
     <% if params[:zipcode] %>
       <%= form_tag cart_total_path do %>

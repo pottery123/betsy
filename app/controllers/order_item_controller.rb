@@ -19,7 +19,12 @@ class OrderItemController < ApplicationController
   end
 
   def total
-    
+    @order = Order.find(session[:order_id])
+    @order_items = OrderItem.where(order_id: session[:order_id])
+    if params[:service_name]
+      @shipping = params[:service_name].to_i
+    end
+    render :index
   end
 
   def create

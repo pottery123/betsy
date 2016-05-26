@@ -33,9 +33,9 @@
 
       <p>Subtotal: <%= number_to_currency(@total) %></p>
 
-      <% if params[:zipcode] %>
-        <p>Shipping Costs: <%= number_to_currency(4) %></p>
-        <p>Total: <%= number_to_currency(@total + 4) %></p>
+      <% if params[:zipcode] || params[:service_name] %>
+        <p>Shipping Cost: <%= number_to_currency(@shipping) %></p>
+        <p>Total: <%= number_to_currency(@total + @shipping) %></p>
       <% end %>
 
     <%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
@@ -59,25 +59,26 @@
     <!-- @total + whatever quote they chose -->
 
     <% if params[:zipcode] %>
-      <% @quotes["fedex"].each do |service_name| %>
-        <ul>
-          <li class="shipping">
-            <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
-            <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
-          </li>
-        </ul>
-      <% end %>
+      <%= form_tag cart_total_path do %>
+        <% @quotes["fedex"].each do |service_name| %>
+          <ul>
+            <li class="shipping">
+              <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
+              <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
+            </li>
+          </ul>
+        <% end %>
 
-      <% @quotes["usps"].each do |service_name| %>
-        <ul>
-          <li class="shipping">
-            <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
-            <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
-          </li>
-        </ul>
+        <% @quotes["usps"].each do |service_name| %>
+          <ul>
+            <li class="shipping">
+              <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
+              <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
+            </li>
+          </ul>
+        <% end %>
+        <%= submit_tag "Update", :class => "btn btn-primary btn-md" %>
       <% end %>
-      <%= button_to "Update", cart_total_path, :class => "btn btn-primary btn-md" %>
-      <%# raise %>
     <% end %>
   </div>
 </div>

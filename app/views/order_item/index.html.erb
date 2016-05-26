@@ -2,36 +2,54 @@
   <i class="fa fa-shopping-cart" aria-hidden="true"></i> Your Cart of Awesome
 </h2>
 
-<% @total = 0 %>
-<% @order_items.each do |item| %>
-  <% product = Product.find(item.product_id) %>
-  <ul>
-    <li>
-      <%= product.name %>
-    </li>
-    <li>
-      Price: $<%= product.price_in_dollars %>
-    </li>
-    <li>
-      Quantity: <%= item.quantity %>
-      <% if product.quantity > 1 %>
-        <%= form_for(item, url: update_cart_path(item.id), method: :patch) do |f| %>
-          <%= f.label "Change Quantity" %>
-          <%= f.select(:quantity, options_for_select((1..product.quantity)), :placeholder => 1) %>
-          <%= f.submit "Update" %>
-        <% end %>
-      <% else %>
-        (Only 1 left in stock!)
+<div class="form-group">
+  <div class="col-md-8">
+    <% @total = 0 %>
+    <% @order_items.each do |item| %>
+      <% product = Product.find(item.product_id) %>
+      <ul>
+        <li>
+          <%= product.name %>
+        </li>
+        <li>
+          Price: $<%= product.price_in_dollars %>
+        </li>
+        <li>
+          Quantity: <%= item.quantity %>
+          <% if product.quantity > 1 %>
+            <%= form_for(item, url: update_cart_path(item.id), method: :patch) do |f| %>
+              <%= f.label "Change Quantity" %>
+              <%= f.select(:quantity, options_for_select((1..product.quantity)), :placeholder => 1) %>
+              <%= f.submit "Update" %>
+            <% end %>
+          <% else %>
+            (Only 1 left in stock!)
+          <% end %>
+        </li>
+        <%= link_to "Remove This Item", {:controller => :order_item, :action => 'destroy', :id => item.id}, method: :delete,:class => "btn btn-primary btn-sm" %>
+      </ul>
+      <% @total += (product.price_in_dollars * item.quantity) %>
+    <% end %>
+
+      <p>Total: <%= number_to_currency(@total) %></p>
+
+    <%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
+
+    <%= link_to "Shop Some More", products_path, :class => "btn btn-primary btn-md" %>
+  </div>
+</div>
+
+<%= form_tag(cart_path, :method => :get) do %>
+  <div class="form-group">
+    <div class="col-md-8">
+      <!-- <span> -->
+        <%= label_tag :zipcode %>
+      <!-- </span> -->
+      <%= text_field_tag :zipcode %>
+      <%#= hidden_field_tag :quantity, :value => @total_items %>
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm", method: :get) do %>
+          Get Shipping Quote
       <% end %>
-    </li>
-    <%= link_to "Remove This Item", {:controller => :order_item, :action => 'destroy', :id => item.id}, method: :delete,:class => "btn btn-primary btn-sm" %>
-  </ul>
-  <% @total += (product.price_in_dollars * item.quantity) %>
+    </div>
+  </div>
 <% end %>
-
-  <p>Total: <%= number_to_currency(@total) %></p>
-
-<%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
-
-
-<%= link_to "Shop Some More", products_path, :class => "btn btn-primary btn-md" %>

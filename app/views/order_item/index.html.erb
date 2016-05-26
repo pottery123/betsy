@@ -39,17 +39,19 @@
   </div>
 </div>
 
-<%= form_tag(cart_path, :method => :get) do %>
+<%= form_tag('/cart/shipping') do %>
   <div class="form-group">
-    <div class="col-md-8">
+    <div class="col-md-4">
       <!-- <span> -->
         <%= label_tag :zipcode %>
       <!-- </span> -->
       <%= text_field_tag :zipcode %>
       <%#= hidden_field_tag :quantity, :value => @total_items %>
-      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm", method: :get) do %>
-          Get Shipping Quote
-      <% end %>
+      <p>
+        <%= submit_tag("Get Quote", :class => "btn btn-primary btn-md") %>
+      </p>
     </div>
   </div>
 <% end %>
+
+<%= @quotes.inspect %>

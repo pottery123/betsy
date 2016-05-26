@@ -1,4 +1,4 @@
-require_relative '../../lib/betsy_shipping'
+require 'betsy_shipping'
 
 class OrderItemController < ApplicationController
 
@@ -6,7 +6,16 @@ class OrderItemController < ApplicationController
   def index
     @order = Order.find(session[:order_id])
     @order_items = OrderItem.where(order_id: session[:order_id]).order("created_at asc")
-    @quotes = BetsyShippingWrapper.get_quotes(98122, 5)
+  end
+
+  def shipping
+    @order = Order.find(session[:order_id])
+    @order_items = OrderItem.where(order_id: session[:order_id])
+    if params[:zipcode]
+      quantity = @order_items.inject(0) { |sum, n| sum + n[:quantity]}
+      @quotes = BetsyShippingWrapper.get_quotes(79912, 6)
+    end
+    render :index
   end
 
   def create

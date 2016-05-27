@@ -29,9 +29,8 @@ class OrdersController < ApplicationController
     if @order.save
       # get quotes
       address = { country: @order.country, state:  @order.state, city:  @order.city, zip:  @order.zip }
-      retrieved_rates = ShipItWrapper.get_quotes(address)
-      @order.update(rates: retrieved_rates)
-      @rates = JSON.parse(@order.rates)
+      @rates = ShipItWrapper.get_quotes(address)
+      @order.update(rates: @rates)
       render :new
     else
       render :new
@@ -44,7 +43,6 @@ class OrdersController < ApplicationController
     @order.update(shipping_selection: params["order"]["shipping_selection"])
     reduce_inventory(@order)
     redirect_to complete_order_path
-    # render :show
   end
 
   def check_inventory(order)

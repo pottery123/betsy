@@ -2,11 +2,12 @@ Rails.application.routes.draw do
 
   # Creates an empty cart and an order id for guests from session id
   root 'sessions#create_order'
-  
+
   get '/complete' => 'orders#show', as: 'complete_order'
   get '/checkout' => 'orders#new', as: 'checkout'
-  
+
   post '/checkout' => 'orders#create'
+  patch '/checkout' => 'orders#place_order'
 
 
   get '/cart' => 'order_item#index', as: 'cart'

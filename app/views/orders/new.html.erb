@@ -3,23 +3,47 @@
   Billing Information
 </h2>
 
+  <% if @status && @status.between?(400,499) %>
+    <p> We could not provide shipping information. Please check your data and try again.</p>
+  <% end %>
+  
 <%= form_for :orders do |f| %>
   <div class="form-group">
     <p>
       Name on credit card: <%= f.text_field :name_on_cc %> <br />
       Credit Card Number: <%= f.text_field :credit_card_number %> <br />
       Address: <%= f.text_field :address %><br />
+      City: <%= f.text_field :city %><br />
+      State: <%= f.text_field :state, placeholder: "WA" %><br />
+      Country: <%= f.select :country, options_for_select([['United States', 'US'], ['Mexico', 'MX'], ['Canada', 'CA']]) %> <br />
       Zip: <%= f.text_field :zip %><br />
       Security Code: <%= f.text_field :security_on_cc %><br />
       Expiration:
       <%= f.select :month, 1..12 %>
       <%= f.select :year, Date.today.year.. 8.years.from_now.year %><br />
       Email: <%= f.text_field :email %><br />
-      <% status = "pending" %>
+      <% status = "not_placed" %>
       <% f.hidden_field :status => status %><br />
       <%= button_tag(type: 'submit', class: "btn btn-primary btn-md", action: "create") do %>
-          Submit
+          Select Shipping
       <% end %>
     </p>
   </div>
 <%end%>
+
+<% if @order && @order.status == "not_placed" && !@rates.empty? %>
+  <%= form_for @order, :url => { action: "place_order" } do |f| %>
+    <% @rates.each do |carrier_name, shipping_options| %>
+      <% unless shipping_options.empty? %>
+        <div>
+          <h3><%= carrier_name.capitalize %></h3>
+          <% shipping_options.each do |option| %>
+            <%= f.radio_button :shipping_selection, "#{option[0]} - #{number_to_currency(option[1]/100.0)}" %>
+            <%= label :shipping_selection, "#{option[0]} - #{number_to_currency(option[1]/100.0)}" %><br />
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <%= f.submit "Place Order", class: "btn btn-primary btn-md" %>
+  <% end %>
+<% end %>

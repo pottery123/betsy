@@ -27,7 +27,7 @@ class OrderItemController < ApplicationController
         if @quotes.code == 200 || @quotes.code == "200"
           render :index
         else
-          flash[:nope] = "Something Went Wrong #{response.code}"
+          flash[:nope] = "Something Went Wrong in #{@quotes.code}"
           render :index
         end
       else

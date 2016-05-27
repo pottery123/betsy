@@ -25,19 +25,26 @@ class OrdersController < ApplicationController
 
     # Send to the confirmation page aka orders#show
     check_inventory(@order)
+
     if @order.save
       # get quotes
       address = { country: @order.country, state:  @order.state, city:  @order.city, zip:  @order.zip }
-      @order.rates = ShipItWrapper.get_quote(address)
+      retrieved_rates = ShipItWrapper.get_quotes(address)
+      @order.update(rates: retrieved_rates)
+      @rates = JSON.parse(@order.rates)
+      render :new
     else
       render :new
     end
   end
 
   def place_order #after they select shipping
+    @order = Order.find(session[:order_id])
+    @order.update(status: "pending")
+    @order.update(shipping_selection: params["order"]["shipping_selection"])
     reduce_inventory(@order)
     redirect_to complete_order_path
-    # render :new
+    # render :show
   end
 
   def check_inventory(order)

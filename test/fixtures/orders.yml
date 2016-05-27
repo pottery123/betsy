@@ -4,8 +4,20 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  id: 1
+  user_id: nil
+  address: 123 ez st.
+  name_on_cc: some name
+  security_on_cc: 333
+  expiration_on_cc: 12/21
+  zip: 98121
+  email: some@email
+  total: 14.00
+  status: not_placed
+  credit_card_number: 1234123412341234
+  city: Seattle
+  state: WA
+  country: US
+  rates: nil
+  shipping_selection: nil

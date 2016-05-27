@@ -29,7 +29,9 @@ class OrdersController < ApplicationController
     if @order.save
       # get quotes
       address = { country: @order.country, state:  @order.state, city:  @order.city, zip:  @order.zip }
-      @rates = ShipItWrapper.get_quotes(address)
+      @shipping_response = ShipItWrapper.get_quotes(address)
+      @rates =  JSON.parse(@shipping_response.body)
+      @status = @shipping_response.code
       @order.update(rates: @rates)
       render :new
     else

@@ -3,6 +3,10 @@
   Billing Information
 </h2>
 
+  <% if @status && @status.between?(400,499) %>
+    <p> We could not provide shipping information. Please check your data and try again.</p>
+  <% end %>
+  
 <%= form_for :orders do |f| %>
   <div class="form-group">
     <p>

@@ -7,7 +7,7 @@ module ShipItWrapper
   def self.get_quotes(address)
     HTTParty.get(BASE_URL + "/quotes", body: { shipping: {
             "address" => address
-          }.to_json }).parsed_response
+          }.to_json })
   end
 
 end

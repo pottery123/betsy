@@ -29,7 +29,8 @@ class OrdersController < ApplicationController
     if @order.save
       # get quotes
       address = { country: @order.country, state:  @order.state, city:  @order.city, zip:  @order.zip }
-      @shipping_response = ShipItWrapper.get_quotes(address)
+      num_items = @order.order_items.count
+      @shipping_response = ShipItWrapper.get_quotes(address, num_items)
       @rates =  JSON.parse(@shipping_response.body)
       @status = @shipping_response.code
       @order.update(rates: @rates)

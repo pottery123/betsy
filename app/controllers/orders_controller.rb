@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     @order.expiration_on_cc = "#{params[:orders][:month]}-#{params[:orders][:year]}"
     # @order.expiration_on_cc = params[:orders][:month]
 
-    @order.status = "pending" # Order is pending until they select shipping
+    @order.status = "not_placed" # Order is pending until they select shipping
     @order.name_on_cc = params[:orders][:name_on_cc]
     @order.address = params[:orders][:address]
     @order.country = params[:orders][:country]

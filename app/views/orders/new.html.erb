@@ -18,7 +18,7 @@
       <%= f.select :month, 1..12 %>
       <%= f.select :year, Date.today.year.. 8.years.from_now.year %><br />
       Email: <%= f.text_field :email %><br />
-      <% status = "pending" %>
+      <% status = "not_placed" %>
       <% f.hidden_field :status => status %><br />
       <%= button_tag(type: 'submit', class: "btn btn-primary btn-md", action: "create") do %>
           Select Shipping

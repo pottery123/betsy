@@ -17,18 +17,24 @@ class OrderItemController < ApplicationController
     #   flash[:nope] = "Something Went Wrong #{response.code}"
     # end
 
-    if !params[:zipcode].match(/^\d{5}(-\d{4})?$/)
+    if !params[:zipcode].match(/^\d{5}(-\d{4})?$/) && params[:zipcode]
       flash[:nope] = "This needs to be a valid zipcode, ex: 98103"
     end
     if params[:zipcode]
       if response.code == "200"
         quantity = @order_items.inject(0) { |sum, n| sum + n[:quantity]}
         @quotes = BetsyShippingWrapper.get_quotes(params[:zipcode], quantity, @order.id)
+        if @quotes.code == 200 || @quotes.code == "200"
+          render :index
+        else
+          flash[:nope] = "Something Went Wrong #{response.code}"
+          render :index
+        end
       else
         flash[:nope] = "Something Went Wrong #{response.code}"
       end
     end
-    render :index
+    # render :index
   end
 
   def total

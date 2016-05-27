@@ -57,7 +57,7 @@
           </p>
     <% end %>
 
-    <% if params[:zipcode] && params[:zipcode].match(/^\d{5}(-\d{4})?$/) %>
+    <% if params[:zipcode] && params[:zipcode].match(/^\d{5}(-\d{4})?$/) && @quotes.code == 200 %>
       <%= form_tag cart_total_path do %>
         <% @quotes["fedex"].each do |service_name| %>
           <ul>

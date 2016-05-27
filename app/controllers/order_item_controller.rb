@@ -11,10 +11,15 @@ class OrderItemController < ApplicationController
   def shipping
     @order = Order.find(session[:order_id])
     @order_items = OrderItem.where(order_id: session[:order_id])
-    # if params[:zipcode].to_i <= 0 #&& params[:zipcode].to_i.class != Fixnum
-    #   flash[:nope] = "This needs to be a number"
-    #   render :index
+    # if response.code == 204
+    #   flash[:yay] = "Favorite Deleted #{response.code}"
+    # else
+    #   flash[:nope] = "Something Went Wrong #{response.code}"
     # end
+
+    if !params[:zipcode].match(/^\d{5}(-\d{4})?$/) #&& params[:zipcode].to_i.class != Fixnum
+      flash[:nope] = "This needs to be a valid zipcode, ex: 98103"
+    end
     if params[:zipcode]
       quantity = @order_items.inject(0) { |sum, n| sum + n[:quantity]}
       @quotes = BetsyShippingWrapper.get_quotes(params[:zipcode], quantity, @order.id)

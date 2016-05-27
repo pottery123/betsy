@@ -27,8 +27,19 @@
   </div>
 <%end%>
 
-<% if @shipping %>
-  <%= form_for :shipping %>
-
+<% if @order && @order.status == "not_placed" && !@rates.empty? %>
+  <%= form_for @order, :url => { action: "place_order" } do |f| %>
+    <% @rates.each do |carrier_name, shipping_options| %>
+      <% unless shipping_options.empty? %>
+        <div>
+          <h3><%= carrier_name.capitalize %></h3>
+          <% shipping_options.each do |option| %>
+            <%= f.radio_button :shipping_selection, "#{option[0]} - #{number_to_currency(option[1]/100.0)}" %>
+            <%= label :shipping_selection, "#{option[0]} - #{number_to_currency(option[1]/100.0)}" %><br />
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <%= f.submit "Place Order", class: "btn btn-primary btn-md" %>
   <% end %>
 <% end %>

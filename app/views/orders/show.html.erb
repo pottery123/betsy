@@ -8,20 +8,21 @@
     <% @total = 0 %>
     <% @order_items.each do |item| %>
       <% @product = Product.find(item.product_id) %>
-      
+
       Item Ordered: <%= link_to @product.name, product_path(@product.id) %> </br>
       Quantity Ordered: <%= item.quantity %> </br>
       Price per Item: <%= number_to_currency(@product.price_in_dollars) %> </br>
       Placed on: <%= @order.updated_at.strftime("%B %d, %Y") %> </br>
-      Status: <%= @order.status.capitalize %> </br> 
+      Status: <%= @order.status.capitalize %> </br>
       <% if item.shipped == true %>
-        Shipped: It's on the way, brah! 
-      <% else %> 
-        Shipped: Pending
-      <% end %> 
+        Shipped: It's on the way, brah!</br>
+      <% else %>
+        Shipped: Pending</br>
+      <% end %>
+      Shipping Method: <%= @order.shipping_selection %> </br>
       <% @total += (@product.price_in_dollars * item.quantity) %>
       </br></br>
-      
+
     <% end %>
   </div>
 </div>

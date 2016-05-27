@@ -40,6 +40,7 @@ group :development, :test do
   gem 'byebug'
   gem 'simplecov'
   gem 'rails-erd'
+  gem 'better_errors'
 end
 
 group :development do

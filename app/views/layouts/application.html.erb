@@ -14,22 +14,22 @@
     <link rel="icon" type="image/png" href="../assets/ditzy_icon.png" sizes="32x32">
     <!-- for IE -->
     <link rel="icon" type="image/x-icon" href="../assets/ditzy_icon.png" >
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/ditzy_icon.png"/> 
-    
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/ditzy_icon.png"/>
+
 </head>
 <body>
 <header>
   <%=link_to image_tag("ditzy_logo_final.png"), products_path%>
-<% if current_user %> 
+<% if current_user %>
   <span>
     Welcome, <%= current_user.user_name.capitalize %>!
   </span>
   <%= link_to "Logout", logout_path, method: "delete", :class => "btn btn-primary btn-sm" %>
-  <%= link_to "Dashboard", dashboard_path(current_user.id), method: "get", :class => "btn btn-primary btn-sm"  %> 
+  <%= link_to "Dashboard", dashboard_path(current_user.id), method: "get", :class => "btn btn-primary btn-sm"  %>
   <%= link_to "Your Cart", cart_path(current_user.id), method: "get", :class => "btn btn-primary btn-sm"  %>
-<% else %> 
-  <%= link_to "Login", new_session_path, :class => "btn btn-primary btn-sm"  %> 
-  <%= link_to "Create An Account", new_user_path, :class => "btn btn-primary btn-sm"  %> 
+<% else %>
+  <%= link_to "Login", new_session_path, :class => "btn btn-primary btn-sm"  %>
+  <%= link_to "Create An Account", new_user_path, :class => "btn btn-primary btn-sm"  %>
   <%= link_to "Your Cart", cart_path, method: "get", :class => "btn btn-primary btn-sm"  %>
 <% end %>
 
@@ -41,7 +41,17 @@
 <hr class='bright-blue'>
 
 </header>
+
+
   <main>
+    <% if !flash.empty? %>
+    <div class="alert alert-info">
+      <% flash.each do |key, msg| %>
+      <%= content_tag :div, msg, :id => key %>
+      <% end %>
+    </div>
+    <% end %>
+    
     <%= yield %>
   </main>
 </body>

@@ -11,6 +11,10 @@ class OrderItemController < ApplicationController
   def shipping
     @order = Order.find(session[:order_id])
     @order_items = OrderItem.where(order_id: session[:order_id])
+    # if params[:zipcode].to_i <= 0 #&& params[:zipcode].to_i.class != Fixnum
+    #   flash[:nope] = "This needs to be a number"
+    #   render :index
+    # end
     if params[:zipcode]
       quantity = @order_items.inject(0) { |sum, n| sum + n[:quantity]}
       @quotes = BetsyShippingWrapper.get_quotes(params[:zipcode], quantity, @order.id)
@@ -53,5 +57,4 @@ class OrderItemController < ApplicationController
     @order_item = OrderItem.find(params[:id])
     @order_product = Product.find(@order_item.product_id)
   end
-
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
- # commenting this out because it breaks things and Rowan is not here to explain it 
- # before_action :require_login, except: [:new, :create, :bad_route]
+  # commenting this out because it breaks things and Rowan is not here to explain it
+  # before_action :require_login, except: [:new, :create, :bad_route]
 
   def new
     @new_user = User.new
@@ -25,21 +25,21 @@ class UsersController < ApplicationController
     @pending_orders_subtotal = OrderItem.joins(:product, :order).where("products.user_id": params[:id]).where("orders.status": "pending").sum("products.price_in_dollars")
   end
 
-    def show
-      @merchant = User.find(params[:id])
-      @products = Product.where(user_id: @merchant.id)
-      @category ||= Category.new
-      @categories = Category.all
-      @product = Product.new
+  def show
+    @merchant = User.find(params[:id])
+    @products = Product.where(user_id: @merchant.id)
+    @category ||= Category.new
+    @categories = Category.all
+    @product = Product.new
 
-      render "users/merchant"
-    end
+    render "users/merchant"
+  end
 
-    def update_order_item
-      @item = OrderItem.find(params[:id])
-      @item.update(update_order_item_params[:order_item])
-      redirect_to orders_dashboard_path(current_user.id)
-    end
+  def update_order_item
+    @item = OrderItem.find(params[:id])
+    @item.update(update_order_item_params[:order_item])
+    redirect_to orders_dashboard_path(current_user.id)
+  end
 
 
   def show_merchant_order

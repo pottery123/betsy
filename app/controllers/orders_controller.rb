@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
-  # confirmation page 
-  def show 
+  # confirmation page
+  def show
     @order = Order.find(session[:order_id])
     @order_items = OrderItem.where(order_id: session[:order_id]).order("created_at asc")
     render :show
-  end 
+  end
 
   def create
     @order = Order.find(session[:order_id])
@@ -59,4 +59,3 @@ class OrdersController < ApplicationController
   #   OrderItem.destroy(@order_details)
   # end
 end
-

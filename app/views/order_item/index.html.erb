@@ -2,36 +2,82 @@
   <i class="fa fa-shopping-cart" aria-hidden="true"></i> Your Cart of Awesome
 </h2>
 
-<% @total = 0 %>
-<% @order_items.each do |item| %>
-  <% product = Product.find(item.product_id) %>
-  <ul>
-    <li>
-      <%= product.name %>
-    </li>
-    <li>
-      Price: $<%= product.price_in_dollars %>
-    </li>
-    <li>
-      Quantity: <%= item.quantity %>
-      <% if product.quantity > 1 %>
-        <%= form_for(item, url: update_cart_path(item.id), method: :patch) do |f| %>
-          <%= f.label "Change Quantity" %>
-          <%= f.select(:quantity, options_for_select((1..product.quantity)), :placeholder => 1) %>
-          <%= f.submit "Update" %>
-        <% end %>
-      <% else %>
-        (Only 1 left in stock!)
+<div class="form-group">
+  <div class="col-md-7">
+    <% @total = 0 %>
+    <% @order_items.each do |item| %>
+      <% product = Product.find(item.product_id) %>
+      <ul>
+        <li>
+          <%= product.name %>
+        </li>
+        <li>
+          Price: $<%= product.price_in_dollars %>
+        </li>
+        <li>
+          Quantity: <%= item.quantity %>
+          <% if product.quantity > 1 %>
+            <%= form_for(item, url: update_cart_path(item.id), method: :patch) do |f| %>
+              <%= f.label "Change Quantity" %>
+              <%= f.select(:quantity, options_for_select((1..product.quantity)), :placeholder => 1) %>
+              <%= f.submit "Update" %>
+            <% end %>
+          <% else %>
+            (Only 1 left in stock!)
+          <% end %>
+        </li>
+        <%= link_to "Remove This Item", {:controller => :order_item, :action => 'destroy', :id => item.id}, method: :delete,:class => "btn btn-primary btn-sm" %>
+      </ul>
+      <% @total += (product.price_in_dollars * item.quantity) %>
+    <% end %>
+
+      <p>Subtotal: <%= number_to_currency(@total) %></p>
+
+      <% if params[:zipcode] || params[:service_name] %>
+        <p>Shipping Cost: <%= !params[:service_name].nil? ? number_to_currency(@shipping) : "$0.00" %></p>
+        <p>Total: <%= !params[:service_name].nil? ? number_to_currency(@total + @shipping) : number_to_currency(@total) %></p>
       <% end %>
-    </li>
-    <%= link_to "Remove This Item", {:controller => :order_item, :action => 'destroy', :id => item.id}, method: :delete,:class => "btn btn-primary btn-sm" %>
-  </ul>
-  <% @total += (product.price_in_dollars * item.quantity) %>
-<% end %>
 
-  <p>Total: <%= number_to_currency(@total) %></p>
+    <%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
 
-<%= link_to"Give Us Money!", checkout_path, :class => "btn btn-primary btn-md" %> </br></br>
+    <%= link_to "Shop Some More", products_path, :class => "btn btn-primary btn-md" %>
+  </div>
+</div>
 
+<!-- Maybe move to the checkout_path so that we can add in the costs -->
+<div class="form-group">
+  <div class="col-md-5">
+    <%= form_tag('/cart/shipping') do %>
+          <span>
+            <%= label_tag :zipcode %>
+          </span>
+          <%= number_field_tag :zipcode %>
+          <p>
+            <%= submit_tag("Get Quote", :class => "btn btn-primary btn-md") %>
+          </p>
+    <% end %>
 
-<%= link_to "Shop Some More", products_path, :class => "btn btn-primary btn-md" %>
+    <% if params[:zipcode] && params[:zipcode].match(/^\d{5}(-\d{4})?$/) && @quotes.code == 200 %>
+      <%= form_tag cart_total_path do %>
+        <% @quotes["fedex"].each do |service_name| %>
+          <ul>
+            <li class="shipping">
+              <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
+              <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
+            </li>
+          </ul>
+        <% end %>
+
+        <% @quotes["usps"].each do |service_name| %>
+          <ul>
+            <li class="shipping">
+              <%= radio_button_tag :service_name, "#{(service_name["rate_price"]/100)}", checked = false %>
+              <%= label_tag "#{service_name["service_name"]}: #{number_to_currency(service_name["rate_price"]/100)}" %>
+            </li>
+          </ul>
+        <% end %>
+        <%= submit_tag "Update", :class => "btn btn-primary btn-md" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
